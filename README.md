@@ -22,3 +22,13 @@ Change into the new directory and run:  `python manage.py runserver`
 Before making the app, do the initial default migrations. Run:  `python manage.py migrate`
 
 This will migrate all of the default apps in Django app & push those DB files into place. You can see the apps were installed by reviewing the `settings.py` file in `INSTALLED_APPS`.
+
+Create the app using:  `django-admin startapp crm` (name of app)
+
+![CRM App Added](/IMGs/1-crm-setup.png)
+
+Add the app to the installed apps:
+
+![add CRM to installed apps](/IMGs/1-crm-initialization.png)
+
+Rerun server to ensure it's still working.
