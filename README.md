@@ -98,6 +98,39 @@ urlpatterns = [
 
 12. test it out by running:  `python manage.py runserver`
 
-## [Create & REgister Django Model](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342589#overview) (Daily Note)
+## [Create & Register Django Model](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342589#overview) (Daily Note)
 
+Users will be able to add in notes of their day.
 
+1. go to CRM app `models.py` file
+2. define the model - essentially a DB table ... to create own model:
+    - pass in `models.model`
+    - define attributes and fields
+
+``python
+class DailyNote(models.Model):
+    title = models.CharField(max_length=100)
+```
+
+3. make your migrations - allow Django to create a mock up or backbone structure of daily note model by running `python manage.py migrate`
+
+![1st DB update](/IMGs/1-makemigrations.png)
+
+Now it's available in our CRM app under a migrations folder:
+
+![Migration Folder Creation](/IMGs/1-migration-outcome.png)
+
+4. then push it to our SQLite DB or our default DB using:  `python manage.py migrate`
+
+![Push Migration to DB](/IMGs/1-migration-push-to-db.png)
+
+5. to access the model, must import it into app's `admin.py` file:
+
+```python
+# CRM admin.py
+from . models import DailyNote
+```
+
+6. to access the model, must register in Django admin ... go to app's `admin.py` file 
+
+![Register new model](image.png)
