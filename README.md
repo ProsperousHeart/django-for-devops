@@ -97,3 +97,7 @@ urlpatterns = [
 ```
 
 12. test it out by running:  `python manage.py runserver`
+
+## [Create & REgister Django Model](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342589#overview) (Daily Note)
+
+
