@@ -32,3 +32,68 @@ Add the app to the installed apps:
 ![add CRM to installed apps](/IMGs/1-crm-initialization.png)
 
 Rerun server to ensure it's still working.
+
+## Create Base Template & View
+
+Will use app level template rendering instead of project level template rendering, which is usually configured in our templates list in the `settings.py` file.
+
+1. go to app folder
+2. create new `templates` folder
+3. create an `index.html` template file & start it
+4. create `urls.py` file in the app
+5. configure `urls.py` within CRM app with our main `urls.py` project file for EdenThought -- duplicate from original!
+6. make sure URL routings are in place so you can connect all the URLs in CRM app are linked to main project ... utilize `include` function and have comma at the end
+
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path('', include('crm.urls')),  # Include the CRM app's URLs
+]
+```
+
+7. configure CRM `urls.py` file but can borrow logic. Need to utilize our path function:  `from django.urls import path`
+8. to be able to access your `views.py` file will need to import
+9. add `urlpatterns`
+
+```python
+# CRM urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+]
+```
+
+10. open `views.py` in CRM app and create a sample view that returns the CRM's rendered template
+
+```python
+from django.shortcuts import render
+
+def home(request):
+    """
+    Render the home page of the CRM application.
+    
+    Args:
+        request: The HTTP request object.
+    
+    Returns:
+        HttpResponse: Rendered home page template.
+    """
+    return render(request, 'index.html')
+```
+
+11. set up the path in your CRM `urls.py` file
+
+```python
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+]
+```
+
+12. test it out by running:  `python manage.py runserver`
