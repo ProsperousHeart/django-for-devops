@@ -25,11 +25,11 @@ This will migrate all of the default apps in Django app & push those DB files in
 
 Create the app using:  `django-admin startapp crm` (name of app)
 
-![CRM App Added](/IMGs/1-crm-setup.png)
+![CRM App Added](/IMGs/section-01/1-crm-setup.png)
 
 Add the app to the installed apps:
 
-![add CRM to installed apps](/IMGs/1-crm-initialization.png)
+![add CRM to installed apps](/IMGs/section-01/1-crm-initialization.png)
 
 Rerun server to ensure it's still working.
 
@@ -107,22 +107,22 @@ Users will be able to add in notes of their day.
     - pass in `models.model`
     - define attributes and fields
 
-``python
+```python
 class DailyNote(models.Model):
     title = models.CharField(max_length=100)
 ```
 
 3. make your migrations - allow Django to create a mock up or backbone structure of daily note model by running `python manage.py migrate`
 
-![1st DB update](/IMGs/1-makemigrations.png)
+![1st DB update](/IMGs/section-01/1-makemigrations.png)
 
 Now it's available in our CRM app under a migrations folder:
 
-![Migration Folder Creation](/IMGs/1-migration-outcome.png)
+![Migration Folder Creation](/IMGs/section-01/1-migration-outcome.png)
 
 4. then push it to our SQLite DB or our default DB using:  `python manage.py migrate`
 
-![Push Migration to DB](/IMGs/1-migration-push-to-db.png)
+![Push Migration to DB](/IMGs/section-01/1-migration-push-to-db.png)
 
 5. to access the model, must import it into app's `admin.py` file:
 
@@ -133,4 +133,17 @@ from . models import DailyNote
 
 6. to access the model, must register in Django admin ... go to app's `admin.py` file 
 
-![Register new model](image.png)
+![Register new model](/IMGs/section-01/1-register-model.png)
+
+## Accessing Django Admin
+
+Create super user:  `python manage.py createsuperuser`
+
+Start server:  `python manage.py runserver`
+
+Access Django Admin:  http://127.0.0.1:8000/admin
+
+![Django Admin](/IMGs/section-01/1-django-admin.png)
+
+![DailyNote admin](/IMGs/section-01/1-admin-dailynote.png)
+
