@@ -147,3 +147,38 @@ Access Django Admin:  http://127.0.0.1:8000/admin
 
 ![DailyNote admin](/IMGs/section-01/1-admin-dailynote.png)
 
+## Build Basic Form for Submitting Notes
+
+### Part 1
+
+Add `forms.py` file in CRM app where we'll add in our code to build this bsaic form.
+
+In this new file, import `forms` module - provides classes & tools for creating/handling forms within a Django application
+
+```python
+from django import forms
+```
+
+Import **DailyNote** model from our curent app's `models.py` file - represent the data structure our form will interact with.
+
+```python
+from . models import DailyNote
+```
+
+Declare **DailyNote** form - it will be a class that inherits from `forms.ModelForm` (a Django class specifically designed for creating forms directly tied to models -- form fields will be automatically generated based on form fields).
+
+Create a nested class inside `DailyNoteForm`. Will be used to define metadata for our DailyNoteForm class - specifying how it should behave or interact with our associated model.
+
+    Specify the model you're working with.
+
+    Specify fields you're using. If you have multiple, separate by comma.
+
+```python
+class DailyNoteForm(forms.ModelForm):
+
+    class Meta:
+        model = DailyNote
+        fields = ['title']
+```
+
+Build upon previously created **View**.
