@@ -182,3 +182,125 @@ class DailyNoteForm(forms.ModelForm):
 ```
 
 Build upon previously created **View**.
+
+### Part 2
+
+Import `DailyNote` model and `DailyNoteForm` in the `views.py` file.
+
+```python
+from . models import DailyNote
+from . forms import DailyNoteForm
+```
+
+Check if the request is going to be a POST we are expecting/working with & assign the `DailyNoteForm` to a variable. We intend for the data entered in the fields of that form be sent as a POST request. Ensure to check if the form is valid, without any errors or issues.
+
+```python
+def home(request):
+    """
+    Render the home page of the CRM application.
+    
+    Args:
+        request: The HTTP request object.
+    
+    Returns:
+        HttpResponse: Rendered home page template.
+    """
+
+    if request.method == 'POST':
+        form = DailyNoteForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    return render(request, 'index.html')
+```
+
+To redirect to home page, must import `redirect` from `django.shortcuts` and add in-line to validation section:
+
+```python
+def home(request):
+
+    if request.method == 'POST':
+        form = DailyNoteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    return render(request, 'index.html')
+```
+
+If not a POST request, simply assign form without the input:  `form = DailyNoteForm()` (shows a blank form each tiem you try to access the `index.html` page without wanting to make a post)
+
+```python
+def home(request):
+
+    if request.method == 'POST':
+        form = DailyNoteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = DailyNoteForm()
+
+    return render(request, 'index.html')
+```
+
+In line of final render, perform query to obtain all objects within the DailyNotes model. Then set up a dictionary so we can output our form and all notes to the `index.html` page. The keys are what will reference in your HTML & the values are what you set to the key.
+
+In this instance:
+- the form
+- the notes
+
+```python
+def home(request):
+
+    if request.method == 'POST':
+        form = DailyNoteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = DailyNoteForm()
+    
+    notes = DailyNote.objects.all()
+    return render(request, 'index.html', {'myForm': form, 'notes': notes})
+```
+
+Update the HTML page to be able to include the data.
+
+When passing in data in Django via POST request, we need to pass through a CSRF token for protection. Then pass in your form using double braces. (adding `.as_p` gives some styling)
+
+To trigger the POST statement need a button. Once clickedn that line of code just mentioned will be instantiated.
+
+```html
+<html>
+    <head>
+        <title>Daily Notes</title>
+    </head>
+    <body>
+        <h1>Welcome to DailyNotes!</h1>
+        <hr/>>
+        <h3>Add a new note:
+        <form method="post">
+            {% csrf_token %}
+            {{myForm.as_p}}
+            <button type="submit">Add note</button>
+        </form>
+</html>
+```
+
+We also want the form to be displayed on this HTML. We want to see all notes on the home page. Should be done outside the form section.
+
+Set up unordered list! Use for loop to traverse notes.
+
+```python
+        {% if myNotes %}
+            <ul>
+                {% for note in myNotes %}
+                    <strong>{{note.title}}</strong>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No notes available.</p>
+        {% endif %}
+```
+

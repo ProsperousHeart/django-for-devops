@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from . models import DailyNote
+from . forms import DailyNoteForm
 
 def home(request):
     """
@@ -10,4 +12,15 @@ def home(request):
     Returns:
         HttpResponse: Rendered home page template.
     """
-    return render(request, 'index.html')
+
+    if request.method == 'POST':
+        form = DailyNoteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Optionally, redirect to a success page or render the same page with a success message
+            return redirect('home')
+    else:
+        form = DailyNoteForm()
+    
+    notes = DailyNote.objects.all()
+    return render(request, 'index.html', {'myForm': form, 'notes': notes})
