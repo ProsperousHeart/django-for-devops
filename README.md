@@ -304,3 +304,13 @@ Set up unordered list! Use for loop to traverse notes.
         {% endif %}
 ```
 
+## Configure Static Files
+
+Create `static` folder in base directory:
+
+![static folder](/IMGs/section-01/1-static-folder.png)
+
+Navigate to main project's `settings.py` file and go to the `STATIC_URL` location. Here we will tell Django where to serve static files from - add the `STATICFILES_DIRS` like so:
+
+![STATICFILES_DIRS](/IMGs/section-01/1-static-files-dirs.png)
+
