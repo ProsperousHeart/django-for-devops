@@ -314,3 +314,38 @@ Navigate to main project's `settings.py` file and go to the `STATIC_URL` locatio
 
 ![STATICFILES_DIRS](/IMGs/section-01/1-static-files-dirs.png)
 
+## [Setup CSS & JS files + Testing](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342601#overview)
+
+Create a CSS and JS folder in your `static` folder. (lower case?)
+
+Create a `styles.css` file in your `css` folder.
+
+At the top of your HTML file, load your static:  `{% load static %}`
+
+Integrate your styles file into your index HTML file:  `<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">` (he didn't include the type)
+
+Create JS file in the `js` folder.
+
+Write your JS code. Need to reference according to an ID. In this case we want to be set according to our form. We will want to modify our form.
+
+Put an ID in the POST portion of HTML file:  `<form id="note-form" method="post">`
+
+We want an alert to show if it was added successfully -this will be done in the JS file.
+
+You will create a function that will start "on submit" when the element ID is utilized. The `event.preventDefault()` ensures the event will trigger but not occur on default - triggered on submission.
+
+When submit done, want to show alert.
+
+```javascript
+document.getElementById("note-form").onsubmit = function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    alert("Your not was added!");
+    this.submit();
+}
+```
+
+To ensure we're able to run this JS, best practice to ensure you add this in right below your code in index file near end outside of body.
+
+`<script src="{% static 'js/app.js' %}"></script>`
+

@@ -1,12 +1,14 @@
+{% load static %}
 <html>
     <head>
         <title>Daily Notes</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     </head>
     <body>
-        <h1>Welcome to DailyNotes!</h1>
+        <h2>Welcome to DailyNotes!</h1>
         <hr/>
-        <h3>Add a new note:
-        <form method="post">
+        <h3>Add a new note:</h3>
+        <form id="note-form" method="post">
             {% csrf_token %}
             {{myForm.as_p}}
             <button type="submit">Add note</button>
@@ -14,13 +16,15 @@
         <hr/>
         <h4>All notes:</h4>
 
-        {% if myNotes %}
+        {% if notes %}
             <ul>
-                {% for note in myNotes %}
-                    <strong>{{note.title}}</strong>
+                {% for note in notes %}
+                    <strong>{{note.title}}</strong><br/>
                 {% endfor %}
             </ul>
         {% else %}
             <p>No notes available.</p>
         {% endif %}
+    </body>
+    <script src="{% static 'js/app.js' %}"></script>
 </html>
