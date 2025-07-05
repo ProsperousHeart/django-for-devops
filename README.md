@@ -395,3 +395,52 @@ Complete command in the main project folder:
 
 ![requirements file](/IMGs/section-02/2-Docker-req-file.png)
 
+## [Create a Docker File](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342637#overview)
+
+A **docker file** is essentially a script that defines how to create a Docker container. It will include a lot of instructions to install dependencies, copy files, set ENV variables, and also define how a container is ultimately going to run.
+
+In base project directory, create:  `Dockerfile`
+
+If using VSCode, it is likely it will install the [Docker extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker).
+
+1. Look for a base Docker image in [Docker Hub](https://hub.docker.com/) - a public registry where we can find & share container images we're utilizing.
+
+2. search for an image (e.g.:  nginx, postgres, [python](https://hub.docker.com/_/python))
+![searching images on Docker Hub](/IMGs/section-02/2-Docker-img-search.png)
+    - use the official Docker image
+    - you'll see the tags start off with version and are followed by some category that give you particular perks unique to each category whens etting up your base image
+
+3. show where the image will come from:  `FROM python:TAG` or `FROM python:VERSION` ... such as `FROM python:3.13`
+
+4. set some default ENV variables to improve performance of our image & avoid unwanted cache files that migth be in place:
+
+    - `ENV PYTHONDONTWRITEBYTECODE=1`:  prevent python from writing **.pyc** files, which reduces storage usage as well
+    - `ENV PYTHONBUFFERED`: ensure we have buffering in place, or that python output is immediately sent to terminal (helps debugging logs)
+    - additional options VSCode suggested:  `PIP_NO_CACHE_DIR`, `PIP_DISABLE_PIP_VERSION_CHECK`
+
+![Docker ENVs](/IMGs/section-02/2-Docker-ENVs.png)
+
+5. set working dorectory inside our container (location where all of our app files will be stored):  `WORKDIR /app`
+
+6. copy requirements file into container from base directory - allows to isntall dependencies before copying full app (helps to improve caching):  `COPY requirements.txt .`
+
+7. upgrade pip to latest version:  `RUN pip install --upgrade pip`
+
+8. install all dependencies listed in requirements file: `RUN pip install -r requirements.txt`
+
+9. copy all project files into container - will include Django app code, static files, template, etc (everything from our directory) into the working directory of the container:  `COPY . .`
+
+10. Expose port so application can be accessed from outside the container:  `EXPOSE 8000`
+
+11. set default command that's going to run when our container starts:  `CMD [list of commands to utilize gunicorn]`
+
+    - most people use comment `python manage.py runserver` but it's better to utilize Gunicorn or gvicorn when you're working with PROD ENVs
+    - `--bind` binds application to all network interfaces available on the 3rd input (post 8000)
+    - runs **gunicorn** server instead of default
+    - specify Django application entry point so we can interact with our Django app and ensure it will run on the cloud server we choose:  `projectname.wsgi:application` (which is found in project `settings.py` file as variable **WSGI_APPLICATION**)
+    - (OPTIONAL) define worker process that will help handle multiple requests more efficiently (optimize performance):  `"--workers=3"`
+    - VSCODE kind of suggested these but not in this way:  `"--timeout=120", "--log-level=info"`
+
+    NOTE:  what is seen in the CMD is the entire command being put into the "command prompt" when run
+
+## [Add a Docker Ignore File](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342641#overview)
