@@ -453,3 +453,17 @@ In main project directory, create:  `.dockerignore`
 Dockerfile
 .dockerignore
 ```
+
+## [Build Docker Image](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342645#overview)
+
+Navigate to your terminal / CMD within your virtual environment. Run:  `docker build -t IMAGENAME .`
+
+You create a **tag** using `-t IMAGENAME`
+
+The `.` tells Docker to look for Docker file in our current directory specified.
+
+![Docker build outcome](/IMGs/section-02/2-Docker-build.png)
+
+You can now see the image in local Docker desktop.
+
+![builds on desktop](/IMGs/section-02/2-Docker-desktop-builds.png)
