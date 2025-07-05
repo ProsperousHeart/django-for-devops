@@ -444,3 +444,12 @@ If using VSCode, it is likely it will install the [Docker extension](https://mar
     NOTE:  what is seen in the CMD is the entire command being put into the "command prompt" when run
 
 ## [Add a Docker Ignore File](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342641#overview)
+
+Important if we want to ensure that we don't go ahead and install certain parts of our app that don't need to be installed within our Docker file.
+
+In main project directory, create:  `.dockerignore`
+
+```docker
+Dockerfile
+.dockerignore
+```
