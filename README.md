@@ -9,7 +9,7 @@ You will need to update the `main.tf` file to add the bucket name, GitHub userna
 
 You will also need to update the ENV files.
 
-# Setup
+# App Setup
 
 ## New Project
 
@@ -348,4 +348,50 @@ document.getElementById("note-form").onsubmit = function(event) {
 To ensure we're able to run this JS, best practice to ensure you add this in right below your code in index file near end outside of body.
 
 `<script src="{% static 'js/app.js' %}"></script>`
+
+## [Apply Styling To Form](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342603#overview)
+
+Go to **static** folder to open CSS file. Add you `note-form` id to it & others. Likely need to delete cache and restart server to see changes.
+
+# Dockerization with Django
+
+## What is Docker?
+
+- a software platform used for deploying applications
+- apps are **packaged into containers** and can be easily run on any machine & withotu compatibility issues
+
+### How Does Docker Work? (Simplified)
+
+1. create a docker file (list of commands used to assemble a Docker based image)
+2. build Docker file while will transform into a Docker image once built
+3. push Docker image to a Docker image repository (e.g.:  Docker Hub, Amazon ECR - elastic container registry)
+4. pull image from repo then run image (transforms into a Docker container)
+
+## [Installing & Setting Up Docker](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342619#overview)
+
+https://www.docker.com/products/docker-desktop/
+
+If you are struggling to open Docker Desktop then you most likely will need to install WSL 2 onto your Windows machine.
+
+Here is a FREE video demonstration on how to set it up:
+
+Please only watch up to 2:23 of the video - after you have done so please be sure to restart your computer before you attempt to run Docker Desktop on your machine again
+
+https://www.youtube.com/watch?v=SjdFip4t3kI
+
+## Installing Gunicorn
+
+It bridges the connection between our Django app (which is goign to eb Dockerized) and the servers on teh cloud service provider that we'll be utilizing - Render.
+
+`pip install gunicorn`
+
+## Generating Requirements file
+
+Needed since you ened to specify the dependencies for the Docker file.
+
+`pip freeze > requirements.txt`
+
+Complete command in the main project folder:
+
+![requirements file](/IMGs/section-02/2-Docker-req-file.png)
 
