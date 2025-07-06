@@ -519,3 +519,28 @@ Adding in markup so we can go to our `settings.py` file of main app section - by
 Now we'll create the markup for our PROD database, which will be based on a Postgres DB.
 
 ![markup for postgres prep](/IMGs/section-03/3-markup-for-postgres.png)
+
+## [Configure ENV variables](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342863#overview)
+
+Many ways to do this - libraries, packages, etc ... But recommended to use [django-environ](https://pypi.org/project/django-environ/) - check out the [READTHEDOCS](https://django-environ.readthedocs.io/en/latest/)! It allows you to do the [12 factor](https://www.12factor.net/) process.
+
+It's a simple and effective package we can use for setting up our ENV vars. Install by running:  `pip install django-environ`
+
+In your project, add a new file:  `.env`
+
+This will house our application's environment variables (secret key, DB settings, etc) ... shoudl be added to `.gitignore` for safety reasons.
+
+Go to main project app's `settings.py` and review what might be sensitive:
+- `SECRET_KEY`
+
+Ensure you import `environ` & initialize at the top:
+
+Then you want to read the `.env` file (in root directory)
+
+![implement environ](/IMGs/section-03/3-implement-environ.png)
+
+Ensure you store sensitive information in the ENV file so we can work with them with our files in local development for now.
+
+In the ENv file:  `SECRET_KEY=django-insecure-un)v0ke+fwp0d+&p#(w6!nx&df=o4%2(^96qa$c6+(c7ij=@%(` (no quotes or spaces)
+
+Update the `settings.py` file so it pulls the ENV var:  `SECRET_KEY = env("SECRET_KEY")`
