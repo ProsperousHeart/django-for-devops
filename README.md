@@ -467,3 +467,29 @@ The `.` tells Docker to look for Docker file in our current directory specified.
 You can now see the image in local Docker desktop.
 
 ![builds on desktop](/IMGs/section-02/2-Docker-desktop-builds.png)
+
+## [Run a Docker Container](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342653#overview)
+
+Need to transform the image into a Docker container:  `docker run -d -p CONTAINER_PORT:COMPUTER_PORT IMAGE_NAME_TO_RUN`
+
+Create and start container from an image:  `docker run`
+
+Run container in detached mode (so logs don't show in terminal):  `-d`
+
+Map port binding to 8000 from container to our computer so we cna access the application in our browser.
+
+Full line: `docker run -d -p 8000:8000 django-app`
+
+You will receive the image ID back:
+
+![returned image ID](/IMGs/section-02/2-Docker-image-ID.png)
+
+You can view the running container in Docker desktop:
+
+![Docker desktop running container](/IMGs/section-02/2-Docker-running-container.png)
+
+- green icon indicates in use
+- can see image base name
+- see it's on the expected ports and clicking it
+
+Ran into [this issue](https://github.com/docker/for-win/issues/14327) and updating Docker resolved it.
