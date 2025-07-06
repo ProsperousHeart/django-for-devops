@@ -594,4 +594,35 @@ All has CSS files and more - the most important file is `staticfiles.json` and i
 
 2. view page source after refresh
 
-3. 
+# GitHub Container Registry
+
+## [What is a Container Registry?](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342745#overview)
+
+**container registry** - storage system for container (docker) images, the blueprints of apps that run in containers
+
+Popular registries include:
+- Amazon ECR
+- GitHub Container Registry
+- Google Artifact Registry
+- Azure Container Registry
+
+Simple way to see registries as GH repos for source code but for Docker images.
+
+## Generate a PAT
+
+Go to the [classic token](https://github.com/settings/tokens) and create one.
+
+![generate PAT](/IMGs/section-04/4-Generate-PAT.png)
+
+We want to build a Docker container locally and push to GH container registry.
+
+NOTE:   Docker Image Permissions
+
+Scope to/from packages registry:
+- write packages
+- delete packages
+
+Can treat a package as a docker image.
+
+Only visible to you once so be sure you copy the key.
+
