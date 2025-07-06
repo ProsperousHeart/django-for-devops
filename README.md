@@ -544,3 +544,20 @@ Ensure you store sensitive information in the ENV file so we can work with them 
 In the ENv file:  `SECRET_KEY=django-insecure-un)v0ke+fwp0d+&p#(w6!nx&df=o4%2(^96qa$c6+(c7ij=@%(` (no quotes or spaces)
 
 Update the `settings.py` file so it pulls the ENV var:  `SECRET_KEY = env("SECRET_KEY")`
+
+## [Additional Deployment Configurations](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342937#overview)
+
+Additional settings in teh `settings.py` file of main project app
+
+Set `DEBUG` to false ... or better yet have it be updated in your ENV vars
+
+Under `ALLOWED_HOSTS`, of course we are deployed & everything we want to grab & connect to the domain available to us (in this instanc it will be from render)
+
+To ensure we don't have any issues, because we can't guess what the URL is going to be, we'll just add the star:  `ALLOWED_HOSTS = ["*"]`
+As we get a relvant domain name or URL we're going to change it to that so we have even better pratices / policies followed.
+
+Nest we set up CSRF trusted origins. This will ensure we can make POST requests on our domains on our server with that particular domain name with that URL we have https:  `# CSRF_TRUSTED_ORIGINS = ['']`
+
+Leave empty for now.
+
+These are now in place for when we're ready!
