@@ -503,3 +503,19 @@ There is a build cache that is persistent - must run the following in CMD prompt
 ![what docker prune covers](/IMGs/section-02/2-Docker-pruning.png)
 
 What happens usually is when you run Docker build it's going to save you time the next build because it will cache everything that hasn't been changed in your application.
+
+# Preparing for Base PROD Deployment
+
+## Installing psycopg2-binary
+
+To install [psycopg2-binary](https://pypi.org/project/psycopg2-binary/) run:  `pip install psycopg2-binary`
+
+## [Add Markup for PROD Database](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342801#overview)
+
+Adding in markup so we can go to our `settings.py` file of main app section - by default using SQLite database:
+
+![default DB](/IMGs/section-03/3-default-db.png)
+
+Now we'll create the markup for our PROD database, which will be based on a Postgres DB.
+
+![markup for postgres prep](/IMGs/section-03/3-markup-for-postgres.png)
