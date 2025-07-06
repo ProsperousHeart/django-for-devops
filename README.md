@@ -626,3 +626,11 @@ Can treat a package as a docker image.
 
 Only visible to you once so be sure you copy the key.
 
+## Login to GH Container Registry
+
+In CMD prompt:  `docker login ghcr.io --username USERNAME --password PAT`
+
+Since using locally, the warning is ok.
+
+![GHCR login](/IMGs/section-04/4-login-GHCR.png)
+
