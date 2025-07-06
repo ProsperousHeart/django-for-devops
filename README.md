@@ -644,3 +644,17 @@ Also want to ensure we're using the latest packages
 
 2. Update `.dockerignore` with:  `.env`
 
+## Ignoring additional files/directories - [Important]
+
+Hi all,
+
+Please note that you can also add your **staticfiles** directory into `.dockerignore` by stating `staticfiles/`
+
+This is optional, but I'd strongly recommend that you do so since we already run collectstatic with our entrypoint.sh file to generate fresh staticfiles with each deployment and because we want to clean up our code.
+
+That being said, you can do that for now or you can wait until later lectures where we will do a full source code cleanup.
+
+Best,
+Arno
+
+## 
