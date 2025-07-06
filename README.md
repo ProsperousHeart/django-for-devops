@@ -493,3 +493,13 @@ You can view the running container in Docker desktop:
 - see it's on the expected ports and clicking it
 
 Ran into [this issue](https://github.com/docker/for-win/issues/14327) and updating Docker resolved it.
+
+## [Docker Resource Cleanup](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342951#overview)
+
+Stop & delete the container. Delete the image.
+
+There is a build cache that is persistent - must run the following in CMD prompt:  `docker system prune`
+
+![what docker prune covers](/IMGs/section-02/2-Docker-pruning.png)
+
+What happens usually is when you run Docker build it's going to save you time the next build because it will cache everything that hasn't been changed in your application.
