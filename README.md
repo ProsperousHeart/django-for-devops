@@ -634,3 +634,13 @@ Since using locally, the warning is ok.
 
 ![GHCR login](/IMGs/section-04/4-login-GHCR.png)
 
+## [Updating Packages & Ignoring ENV](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49343651#overview)
+
+Ensure `.env` is ignored to ensure no sensitive information is exposed in our Docker image
+
+Also want to ensure we're using the latest packages
+
+1. In CMD prompt:  `pip freeze > requirements.txt`
+
+2. Update `.dockerignore` with:  `.env`
+
