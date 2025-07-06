@@ -561,3 +561,37 @@ Nest we set up CSRF trusted origins. This will ensure we can make POST requests 
 Leave empty for now.
 
 These are now in place for when we're ready!
+
+## [Handling static assets with WhiteNoise](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49342931#overview)
+
+We want to be able to work with our static files (CSS, JS) & all behind the scenes files we don't see but work with all the time. Need to ensure we can utilize it in PROD.
+
+[Whitenoise](https://pypi.org/project/whitenoise/) ReadtheDocs [here](https://whitenoise.readthedocs.io/en/latest/). It's a specific package you can use to allow you to serve your static files in PROD.
+
+Configure it per [here](https://whitenoise.readthedocs.io/en/stable/django.html#make-sure-staticfiles-is-configured-correctly).
+
+Enable it via `MIDDLEWARE` just below the security by adding:  `"whitenoise.middleware.WhiteNoiseMiddleware",`
+
+Add compression & caching support for optimal performance. So no matter what browser is viewing, it's not going to run into a situation where it will cache your app static files because browsers do that ... then you don't always get the latest version.
+
+By adding compression & caching support it'll hash your files to ensure they forcibly load the latest updates to said static files. This requires setting the root directory as outlined in step 1. Will house all static files for the app.
+
+The code goes in the main app's `settings.py` file.
+
+![static files setup](/IMGs/section-03/3-static-section.png)
+
+Thsi will look for the `staticfiles` folder which will be created.
+
+After configuration, run the following to get the files copied to the expected folder:  `python manage.py collectstatic`
+
+![created static folder](/IMGs/section-03/3-static-folder-creation.png)
+
+All has CSS files and more - the most important file is `staticfiles.json` and it should have been automatically created. (provides caching support for entire app)
+
+### How to Test
+
+1. make sure your server is running
+
+2. view page source after refresh
+
+3. 
