@@ -692,3 +692,9 @@ This will run when our Docker container starts - **at run time**. It will then e
 ![update gunicorn](/IMGs/section-04/4-update-gunicorn-loc.png)
 
 The entrypoint tells container to run the script when container starts.
+
+## Docker Build Command (WIN)
+
+`docker build -t gfcr.io/lowercaseusername/pkgname-for-ghcr .`
+
+![GHCR image](/IMGs/section-04/4-ghcr-image.png)
