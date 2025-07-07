@@ -745,3 +745,45 @@ You can see your package under your GitHub profile such as [here](https://github
 
 Render is a cloud service provider like heroku, AWS, Azure, Google Cloud, etc. We'll use this for the course and focus mainly on IaC & ensure we have a nice DevOps CICD process.
 
+## Deploy A Dockerized App with Render
+
+Navigate to your projects [dashboard](https://dashboard.render.com/).
+
+Choose to add a [new web service](https://dashboard.render.com/web/new).
+
+![add PaaS web service](/IMGs/section-06/6-PaaS-Render-add-web-service.png)
+
+Choose existing image:
+
+![choose existing image](/IMGs/section-06/6-PaaS-web-svc-choose-existing.png)
+
+Paste your URL, such as from one of you GHCR items [here](https://github.com/users/ProsperousHeart/packages/container/package):  `docker pull ghcr.io/prosperousheart/app-image:latest`
+
+If it's private, you'll need to add your PAT as a [registry credential](https://render.com/docs/deploying-an-image#managing-credentials).
+
+![add cred alert](/IMGs/section-06/6-alert-to-add-cred.png)
+
+![add cred screen - empty](/IMGs/section-06/6-add-cred-screen.png)
+
+Registry will be GitHub and this is where you'll use the PAT that was made.
+
+![add cred screen - complete](/IMGs/section-06/6-add-cred-screen-complete.png)
+
+You will now be able to use that credential:
+
+![final existing image](/IMGs/section-06/6-final-existing-img.png)
+
+Click the **connect** button. You can then update the following ...
+
+![alt text](/IMGs/section-06/6-new-svc-1.png)
+
+Choose the free instance.
+
+![alt text](/IMGs/section-06/6-new-svc-2.png)
+
+Add your ENV variables into Render.
+
+![alt text](/IMGs/section-06/6-new-svc-3.png)
+
+Then choose the **Deploy Web Service** when ready.
+
