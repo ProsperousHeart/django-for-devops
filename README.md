@@ -698,3 +698,17 @@ The entrypoint tells container to run the script when container starts.
 `docker build -t gfcr.io/lowercaseusername/pkgname-for-ghcr .`
 
 ![GHCR image](/IMGs/section-04/4-ghcr-image.png)
+
+## [Push Docker Image to GHCR](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49343099#overview)
+
+If you've logged into GHCR you should be able to run:  `docker push ghcr.io/username/image-name:tag`
+
+While items are being pushed, you'll see something like this:
+
+![GHCR docker image push in progress](/IMGs/section-04/4-ghcr-img-push-in-progress.png)
+
+One completed, you'll see the latest SHA and size:
+
+![GHCR pushed IMG SHA256](/IMGs/section-04/4-ghcr-pushed-img-sha.png)
+
+You can see your package under your GitHub profile such as [here](https://github.com/ProsperousHeart?tab=packages).
