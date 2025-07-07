@@ -16,4 +16,6 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "edenthought.wsgi:application", "--workers=3"]
+# CMD ["gunicorn", "--bind", "0.0.0.0:8000", "edenthought.wsgi:application", "--workers=3"]
+RUN chmod +x ./entrypoint.sh
+ENTRYPOINT [ "./entrypoint.sh" ]

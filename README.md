@@ -657,4 +657,38 @@ That being said, you can do that for now or you can wait until later lectures wh
 Best,
 Arno
 
-## 
+## [Build a Docker Image for PROD](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49343047#overview)
+
+This is where we'll build a Docker image in PROD, so we'll tidy things up and ensure we can handle our static files & migrations.
+
+Best way is to create an `entrypoint.sh` script in project's base directory.
+
+This will run when our Docker container starts - **at run time**. It will then execute all commands in there.
+
+1. Need to add **shebang line** (tells our system to run the script with bash):  `#!/bin/bash`
+
+2. **echo** will act as the output command - logging for the server:
+
+    - `echo "Running migrations..."`
+    - `python manage.py migrate --noinput` (don't want user to prompt y/n ... want terminal to automatically run this command for us)
+    
+3. collect static files:
+    - `echo "Collecting static files..."`
+    - `python manage.py collectstatic --noinput`
+
+4. execute gunicorn here instead of the Dockerfile:
+
+    - remove or comment out from the main project's Dockerfile:  `CMD ["gunicorn", "--bind", "0.0.0.0:8000", "edenthought.wsgi:application", "--workers=3"]`
+
+    - rewrite the command in the entrypoint file:
+    `exec gunicorn PROJECTNAME.wsgi:application --bind 0.0.0.0:8000 --workers 3`
+        - `exec` for execution
+        - project name before bind
+
+5. update Dockerfile so it refers to the entrypoint & ensure it's runnable: `RUN chmod +x ./entrypoint.sh` (will ensure the file is executable & `.` is referring to the *WORKDIR*)
+
+6. Set up your entry point:  `ENTRYPOINT ["PATH_TO_RUN_FILE"]`
+
+![update gunicorn](/IMGs/section-04/4-update-gunicorn-loc.png)
+
+The entrypoint tells container to run the script when container starts.
