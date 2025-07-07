@@ -712,3 +712,18 @@ One completed, you'll see the latest SHA and size:
 ![GHCR pushed IMG SHA256](/IMGs/section-04/4-ghcr-pushed-img-sha.png)
 
 You can see your package under your GitHub profile such as [here](https://github.com/ProsperousHeart?tab=packages).
+
+# Cloud Service Models & Strategy
+
+1. **IaaS (Infrastructure as a Service)**:  provides VMs, storage, & networking allowing users to manage their own software while the cloud provider handles the hardware (e.g.:  AWS EC2)
+
+![IaaS](/IMGs/section-05/5-cloud-service-IaaS.png)
+
+2. **PaaS (Platform as a Service)**:  offers a pre-configured platform for developing, running, & managing applications without worrying about underlying infrastructure (e.g.: Render, Heroku, Railway, AWS Elastic Beanstalk) ... simplest way to deploy your app!
+
+![PaaS](/IMGs/section-05/5-cloud-service-PaaS.png)
+
+3. **IaC (Infrastructure as Code)**:  automates cloud resource provisioning & management using code
+
+![IaC](/IMGs/section-05/5-cloud-service-IaC.png)
+
