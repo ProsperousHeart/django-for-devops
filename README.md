@@ -891,3 +891,12 @@ clear up `ALLOWED_HOSTS` and `CSRF_TRUSTED_ORIGINS`:
 
 ![allowed and trusted](/IMGs/section-06/6-clean-up-allowed-hosts-csrf.png)
 
+
+# IaC with Render & Terraform
+
+## [What is Terraform?](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49343125#overview)
+
+**Terraform** is a tool that helps you set upa nd manage your cloud infrastructure (i.e.: servers, DBs, networks) **using simple code** instead of clicking around in a dashboard (i.e. what we did earlier with PaaS)
+
+Lets you describe what your cloud setup should look like in files, then automatically builds everything to match that description.
+
