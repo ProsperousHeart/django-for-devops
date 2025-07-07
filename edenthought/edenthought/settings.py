@@ -32,10 +32,13 @@ SECRET_KEY = env("SECRET_KEY")
 # DEBUG = env("DEBUG")
 DEBUG = False
 
-# ALLOWED_HOSTS = ["*"]
-ALLOWED_HOSTS = ["app-image-latest-ply3.onrender.com"]
+ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["app-image-latest-ply3.onrender.com",
+#                  "localhost",
+#                  "127.0.0.1"]
 
-CSRF_TRUSTED_ORIGINS = ['https://app-image-latest-ply3.onrender.com']
+# CSRF_TRUSTED_ORIGINS = [""]
+# CSRF_TRUSTED_ORIGINS = ['https://app-image-latest-ply3.onrender.com']
 
 # Application definition
 
@@ -96,11 +99,11 @@ DATABASES = {
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "",
-#         "USER": "",
-#         "PASSWORD": "",
-#         "HOST": "", # endpoint for DB sever
-#         "PORT": "", # port for DB server
+#         "NAME": env("DB_NAME", default="productiondatabase1_hcbd"),
+#         "USER": env("DB_USER"),
+#         "PASSWORD": env("DB_PASSWORD"),
+#         "HOST": env("DB_HOST"),
+#         "PORT": env("DB_PORT"),
 #     }
 # }
 
