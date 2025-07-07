@@ -715,6 +715,8 @@ You can see your package under your GitHub profile such as [here](https://github
 
 # Cloud Service Models & Strategy
 
+## Service Models
+
 1. **IaaS (Infrastructure as a Service)**:  provides VMs, storage, & networking allowing users to manage their own software while the cloud provider handles the hardware (e.g.:  AWS EC2)
 
 ![IaaS](/IMGs/section-05/5-cloud-service-IaaS.png)
@@ -727,3 +729,6 @@ You can see your package under your GitHub profile such as [here](https://github
 
 ![IaC](/IMGs/section-05/5-cloud-service-IaC.png)
 
+## Use Case 1:  PaaS
+
+![use case 1](/IMGs/section-05/5-cloud-service-use-case-1.png)
