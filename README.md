@@ -914,4 +914,10 @@ You can confirm if set up properly by going to CMD and typing:  `terraform --ver
 
 Just typing `terraform` will provide commands you can use.
 
-## 
+## [Add Render Payment Method & Analyze Costs](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49601911#overview)
+
+If we want to utilize IaC and automatically create our IaC with Terraform, we need to utilize a starter instance when working with Terraform and IaC. Our DB will be free, so no worries there. (i.e. only the web service)
+
+[Render pricing](https://render.com/pricing) - check out the [compute section](https://render.com/pricing#compute). If you don't use the whole month, it won't cost you. It only costs when using the whole month. (He created them for only a couple hours and wasn't charged.)
+
+Manually you can set it all up for free. But when using IaC (likely a security measure) onyl with web services you have to use a starter instance & card on Render.
