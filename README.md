@@ -732,3 +732,9 @@ You can see your package under your GitHub profile such as [here](https://github
 ## Use Case 1:  PaaS
 
 ![use case 1](/IMGs/section-05/5-cloud-service-use-case-1.png)
+
+## Use Case 2:  IaC
+
+**Terraform** is an infrastructure as code tool. We'll utilize it so we can write the necessary code & communicate with render, so we can setup the resources to be provisioned based on the code we write with Terraform.
+
+![use case 2](/IMGs/section-05/5-cloud-service-use-case-2.png)
