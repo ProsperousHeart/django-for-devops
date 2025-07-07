@@ -921,3 +921,30 @@ If we want to utilize IaC and automatically create our IaC with Terraform, we ne
 [Render pricing](https://render.com/pricing) - check out the [compute section](https://render.com/pricing#compute). If you don't use the whole month, it won't cost you. It only costs when using the whole month. (He created them for only a couple hours and wasn't charged.)
 
 Manually you can set it all up for free. But when using IaC (likely a security measure) onyl with web services you have to use a starter instance & card on Render.
+
+## [Obtain Render API Key & Owner ID](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49601903#overview)
+
+This will allow us to communicate with Render, create our infrastructure, & requests to Render for retrieving our own ID.
+
+Go to your **Account Settings** then go to your **API Keys** section.
+
+Create an API key form here for this project. He called it:  **RenderAPIKey**
+
+The response is only visible to you once. You can always revoke a key if it gets compromised.
+
+Need to make GET request so we can obtain our owner ID. In your terminal:
+
+```terminal
+curl -X GET -H "Accept: application/json -H "Authorization: Bearer RENDER_API_KEY" https://api.render.com/v1/owners
+```
+
+This is the header that will tell our server (Render) that we want the response returned in JSON format.
+
+We self authorize with the API key
+
+Render API endpoint is at the end.
+
+![GET owner via CMD CURL](/IMGs/section-07/7-render-GET-owner.png)
+
+Learn more about Render API [here](https://api-docs.render.com/reference/introduction).
+
