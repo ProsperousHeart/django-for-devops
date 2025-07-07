@@ -948,3 +948,10 @@ Render API endpoint is at the end.
 
 Learn more about Render API [here](https://api-docs.render.com/reference/introduction).
 
+# [How to define Cloud Resources with Terraform in Code?](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49601637#overview)
+
+What is the [Terraform registry](https://registry.terraform.io/?product_intent=terraform)? It has a variety of providers available it is compatible with. We'll use **[render-oss](https://registry.terraform.io/providers/render-oss/render/latest)** - the IaC layout or blueprint for Terraform. At the time I went through this training, it was version:  **1.7.0**
+
+When you go to the [documentation](https://registry.terraform.io/providers/render-oss/render/latest/docs) you'll see it's the official Render provider ^ we need to provide some starting up information (e.g.:  API key, owner ID, etc).
+
+The resources drop down on the left has other things you may be interested in utilizing. (e.g.:  setting upa  web service)
