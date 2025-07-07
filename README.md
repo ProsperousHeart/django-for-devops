@@ -900,3 +900,18 @@ clear up `ALLOWED_HOSTS` and `CSRF_TRUSTED_ORIGINS`:
 
 Lets you describe what your cloud setup should look like in files, then automatically builds everything to match that description.
 
+## [Installing & Setting Up - WIN](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49343135#overview)
+
+Download from [their site](https://developer.hashicorp.com/terraform) - likely to install AMD64. Extract it to wherever you want it to be. (He put on desktop then moves it to `Program Files`.)
+
+Ensure we set the Terraform folder up within our program files.
+
+Edit environment variables so that in **system variables > path** to add the directory the Terraform application is in:  `C:\Program Files\Terraform`
+
+Suggested to restart your PC to ensure run variables are loaded properly.
+
+You can confirm if set up properly by going to CMD and typing:  `terraform --version`
+
+Just typing `terraform` will provide commands you can use.
+
+## 
