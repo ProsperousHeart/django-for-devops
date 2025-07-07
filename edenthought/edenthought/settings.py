@@ -32,9 +32,10 @@ SECRET_KEY = env("SECRET_KEY")
 # DEBUG = env("DEBUG")
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["app-image-latest-ply3.onrender.com"]
 
-# CSRF_TRUSTED_ORIGINS = ['']
+CSRF_TRUSTED_ORIGINS = ['https://app-image-latest-ply3.onrender.com']
 
 # Application definition
 

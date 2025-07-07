@@ -787,3 +787,25 @@ Add your ENV variables into Render.
 
 Then choose the **Deploy Web Service** when ready.
 
+## [Additional Config & Updating Our App](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49548439#overview)
+
+Go to your main app's `settings.py` file.
+
+Set the `ALLOWED_HOSTS` to the domain name given by Render - be sure to remove the `https://`.
+
+![update ALLOWED_HOSTS](/IMGs/section-06/6-allowed-domains-update.png)
+
+Set your `CSRF_TRUSTED_ORIGINS` - it will be the entire URL from before. This will allow you to make POST requests effectively.
+
+Run the build and push lines again - for this example:
+
+```
+docker build -t gfcr.io/prosperousheart/app-image .
+docker push ghcr.io/prosperousheart/app-image:latest
+```
+
+Once pushed, go back to Render and tell it to deploy latest reference.
+
+![deploy latest](/IMGs/section-06/6-deploy-latest-ref.png)
+
+Once deployed, you can tests if CSRF is working if the POST completed and the list is updated.
