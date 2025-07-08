@@ -330,8 +330,33 @@ We can access the application, make a migration, create superuser, etc.
 
 ## [Utilize the Render Shell](http://udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49731141#overview)
 
-I fyou try to run `python manage.py migrate` there would be nothing because the `entrypoint.sh` file already has this.
+If you try to run `python manage.py migrate` there would be nothing because the `entrypoint.sh` file already has this.
 
 Only thing you cannot go around or skip ahead on is creating the **superuser**:  `python manage.py createsuperuser`
 
 Test POST call and admin site.
+
+## [Call Deploy Hook to Handle Re-Deployments](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49731151#overview)
+
+Simple change - don't need to redeploy Docker.
+
+In `static` directory, change color of heading to blue. Tweak the index page template.
+
+Build & push docker image:
+
+```
+docker build -t ghcr.io/prosperousheart/app-image .
+docker push ghcr.io/prosperousheart/app-image
+```
+
+Nothing will have happened. For your web service, go to **Settings** and locate the `Deploy hook` section. Copy the private hook URL.
+
+On local machine, run the following in command prompt:  `curl -X POST "API_URL_DEPLOY_HOOK_HERE"`
+
+![web hook local setup](/IMGs/section-07/7-create-web-hook.png)
+
+Can see the events that the hook kicked off a redeploy:
+
+![web hook triggers redeploy](/IMGs/section-07/7-redeploy-triggered.png)
+
+Test redeployment by refreshing the page of your app.

@@ -7,7 +7,7 @@
     <body>
         <h2>Welcome to DailyNotes!</h1>
         <hr/>
-        <h3>Add a new note:</h3>
+        <h3>Enter a new note below:</h3>
         <form id="note-form" method="post">
             {% csrf_token %}
             {{myForm.as_p}}
