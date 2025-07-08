@@ -328,4 +328,10 @@ Go to the SHELL section of your web service. This allos you to essentially SSH i
 
 We can access the application, make a migration, create superuser, etc.
 
-## ?
+## [Utilize the Render Shell](http://udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49731141#overview)
+
+I fyou try to run `python manage.py migrate` there would be nothing because the `entrypoint.sh` file already has this.
+
+Only thing you cannot go around or skip ahead on is creating the **superuser**:  `python manage.py createsuperuser`
+
+Test POST call and admin site.
