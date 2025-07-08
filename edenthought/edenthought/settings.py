@@ -33,12 +33,10 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = False
 
 # ALLOWED_HOSTS = ["*"]
-ALLOWED_HOSTS = ["my-django-app-ycg1.onrender.com",
-                 "localhost",
-                 "127.0.0.1"]
+ALLOWED_HOSTS = ["my-django-app-ycg1.onrender.com", "localhost", "127.0.0.1"]
 
 # CSRF_TRUSTED_ORIGINS = [""]
-CSRF_TRUSTED_ORIGINS = ['https://my-django-app-ycg1.onrender.com']
+CSRF_TRUSTED_ORIGINS = ["https://my-django-app-ycg1.onrender.com"]
 
 # Application definition
 

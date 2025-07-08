@@ -82,3 +82,13 @@ In command prompt run:  `python manage.py test`
 ![test run outcome](/IMGs/section-08/8-test-outcome.png)
 
 Switch the databases so your PROD DB is to be used moving forward.
+
+# [Format & Cleanup Code With Black](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49770359#overview)
+
+[Black](https://pypi.org/project/black/) - is a code formatter that automatically rewrites code to ensure it follows a consistent rule in terms of styling & helps make it cleaner.
+
+Run in CMD prompt:  `pip install black`
+
+To have it automatically update, run:  `black .`
+
+![black reformatting output](/IMGs/section-08/8-black-reformatting-output.png)
