@@ -75,4 +75,10 @@ Have a few imports to complete:
 
 # Running Tests On Our Cases
 
-?
+NAvigate to your main project app folder and open `settings.py` - for this test, comment out PROD DB and use the SQLite in the interim.
+
+In command prompt run:  `python manage.py test`
+
+![test run outcome](/IMGs/section-08/8-test-outcome.png)
+
+Switch the databases so your PROD DB is to be used moving forward.
