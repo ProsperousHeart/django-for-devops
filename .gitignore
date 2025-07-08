@@ -6,6 +6,7 @@ secrets.tfvars
 .terraform.lock.hcl
 *.tfstate
 *.tfstate.*
+0-section-template.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
