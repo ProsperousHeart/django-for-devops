@@ -312,4 +312,20 @@ Can confirm push by going to your packages.
 
 The web service does not automatically rebuild the deployment. Using CICD with GitHub, we will be able to automatically set this up for automated updates.
 
+## [Assign DB ENV Vars in Render](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49731139#overview)
+
 Now need to configure the DB creds in terms of ENV vars.
+
+Goto DB instance.
+
+Go to the web service environment section. Update as neeed and hti the "Save & Deploy" button.
+
+When you update your ENV vars, it looks for the latest & redepolys your service.
+
+Go to the SHELL section of your web service. This allos you to essentially SSH into your application. The Docker directory we set up is called `app`:
+
+![shell init output](/IMGs/section-07/7-shell-init-output.png)
+
+We can access the application, make a migration, create superuser, etc.
+
+## ?
