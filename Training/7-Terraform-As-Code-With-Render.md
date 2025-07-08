@@ -360,3 +360,11 @@ Can see the events that the hook kicked off a redeploy:
 ![web hook triggers redeploy](/IMGs/section-07/7-redeploy-triggered.png)
 
 Test redeployment by refreshing the page of your app.
+
+## [Compare Distinction Between PaaS and IaC Post-Deployment](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49731161#overview)
+
+Considering the `main.tf` file ...
+
+For `WebApp1` (the web service) the `registry_credential_id` ...
+
+When you go to your Render dashboard then your web service, settings -- can see the GHCR credential as well as the image URL.
