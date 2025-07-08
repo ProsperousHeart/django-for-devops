@@ -368,3 +368,11 @@ Considering the `main.tf` file ...
 For `WebApp1` (the web service) the `registry_credential_id` ...
 
 When you go to your Render dashboard then your web service, settings -- can see the GHCR credential as well as the image URL.
+
+## [Exploring Purpose of Additional TF Files](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49602043#overview)
+
+1. `.terraform` folder - stores all internal files & downlodaed plugins that TF needs in order to run
+
+2. `.terraform.lock.hcl` - locks versions of providers we have utilized to ensure we always have a consistent setup across different machines
+
+3. `terraform.tfstate` - keeps track of infra we've created so TF knows what exists
