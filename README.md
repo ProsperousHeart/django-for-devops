@@ -1097,3 +1097,4 @@ Web service wil be a little different - within it's code blocks is where we're d
 
 ## [Compare Distinction Between PaaS and IaC Pre-Deployment](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49601667#overview)
 
+This just covered how this applied to manually setting up within Render like before.
