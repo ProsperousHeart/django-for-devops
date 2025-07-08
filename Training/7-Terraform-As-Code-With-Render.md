@@ -225,3 +225,12 @@ docker build -t ghcr.io/prosperousheart/app-image .
 docker push ghcr.io/prosperousheart/app-image
 ```
 
+## [Best Practices for DB Value Naming](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49731023#overview)
+
+Beest practices and managing expectations with naming conventions.
+
+May differ with Render, but when it comes to IaaS there is a convention to follow.
+
+`MyDatabase` --> `my_database`
+
+`DemoUser` --> `my_database_user`
