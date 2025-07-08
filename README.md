@@ -955,3 +955,110 @@ What is the [Terraform registry](https://registry.terraform.io/?product_intent=t
 When you go to the [documentation](https://registry.terraform.io/providers/render-oss/render/latest/docs) you'll see it's the official Render provider ^ we need to provide some starting up information (e.g.:  API key, owner ID, etc).
 
 The resources drop down on the left has other things you may be interested in utilizing. (e.g.:  setting upa  web service)
+
+## Build Cloud Infra in Terraform
+
+### [Part 1](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49601949#overview)
+
+Focused on building cloud resources with Terraform in code.
+
+He gave a basic template to put intot he main project folder. Explanations:
+
+```
+terraform {
+  required_providers {
+    render = {
+      source  = "render-oss/render"
+      version = "1.7.0"
+    }
+  }
+}
+```
+
+The above block sets some of the basic setup rules for Terraform:
+
+   - The **required_providers** lists all of the Terraform providers we will use.
+
+   - The **source** is like teh official name in the registry.
+
+   - The **version** is what we want to use of the provider to keep things stable and predictable.
+
+```
+provider "render" {
+  api_key  = ""
+  owner_id = ""
+}
+```
+
+The provider section needs to have data filled in.
+
+Below is where we are defining our resource(s):
+- [render_registry_credential](https://registry.terraform.io/providers/render-oss/render/latest/docs/resources/registry_credential)
+- [render_web_service](https://registry.terraform.io/providers/render-oss/render/latest/docs/resources/web_service)
+- [render_postgres](https://registry.terraform.io/providers/render-oss/render/latest/docs/resources/postgres)
+
+The final element in the calls after the service name are names you give them - acts as a label for the resource created.
+
+```
+# Define Render Registry Credential for GitHub Container Registry (GHCR)
+
+resource "render_registry_credential" "ghcr_credential" {
+  name = "ghcr-credential"
+  registry = "GITHUB"
+  username = ""
+  auth_token = ""  
+}
+```
+
+The **name** refers to the registry credential within Render so it can be whatever you want.
+
+The **registry** defines where your Docker image currently exists. Might use **ECR** for AWS or something similar.
+
+```
+# Define the Render Web Service
+
+resource "render_web_service" "WebApp1" {
+  
+  name   = "my-django-app"
+  plan   = "starter"
+  region = "oregon"
+
+   runtime_source = {
+    image = {
+      image_url = "ghcr.io/<GitHub username>/app-image"
+      tag = "latest"  
+      registry_credential_id = render_registry_credential.ghcr_credential.id
+    }
+  }
+
+
+}
+```
+
+The 3rd part of the call (e.g.:  `"WebApp1"`) is only used behind the scenes for setting up resources in Terraform. (like a label)
+
+The **name** field will be the name of the web service - call it whatever you want.
+
+The **plan** needs to be **starter**.
+
+You'll need to update the **runtime_source** section as this is where it will pull the image from. It defines how our runtime ENV is sourced.
+
+   - the **image_url** username must be in lower case
+   - **tag** is essentially the version tag for the Docker image
+   - the **registry_credential_id** refers to something made earlier in the file according to it's `.id` attribute (essentially the ID of the registry credentials we use to authenticate against the GHCR)
+
+```
+resource "render_postgres" "Database1" {
+
+    name = "ProductionDatabase1"
+    plan = "free"       
+    region = "oregon"      
+    version = "16"
+
+    database_name = ""
+    database_user = ""
+
+    high_availability_enabled = false  # Disabled high availability for simplicity
+
+  }
+```
