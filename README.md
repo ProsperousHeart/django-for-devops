@@ -995,7 +995,6 @@ The provider section needs to have data filled in.
 Below is where we are defining our resource(s):
 - [render_registry_credential](https://registry.terraform.io/providers/render-oss/render/latest/docs/resources/registry_credential)
 - [render_web_service](https://registry.terraform.io/providers/render-oss/render/latest/docs/resources/web_service)
-- [render_postgres](https://registry.terraform.io/providers/render-oss/render/latest/docs/resources/postgres)
 
 The final element in the calls after the service name are names you give them - acts as a label for the resource created.
 
@@ -1047,6 +1046,10 @@ You'll need to update the **runtime_source** section as this is where it will pu
    - **tag** is essentially the version tag for the Docker image
    - the **registry_credential_id** refers to something made earlier in the file according to it's `.id` attribute (essentially the ID of the registry credentials we use to authenticate against the GHCR)
 
+## Part 2
+
+Relates to [render_postgres](https://registry.terraform.io/providers/render-oss/render/latest/docs/resources/postgres).
+
 ```
 resource "render_postgres" "Database1" {
 
@@ -1062,3 +1065,8 @@ resource "render_postgres" "Database1" {
 
   }
 ```
+
+The **name** is what is used to ID and manage the DB instance within Render. (label)
+
+The **database_name** (e.g.:  MyDatabase) and **database_user** (e.g.: DemoUser) is what Render provides. (actual DB name)
+
