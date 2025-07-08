@@ -1046,7 +1046,7 @@ You'll need to update the **runtime_source** section as this is where it will pu
    - **tag** is essentially the version tag for the Docker image
    - the **registry_credential_id** refers to something made earlier in the file according to it's `.id` attribute (essentially the ID of the registry credentials we use to authenticate against the GHCR)
 
-## Part 2
+### Part 2
 
 Relates to [render_postgres](https://registry.terraform.io/providers/render-oss/render/latest/docs/resources/postgres).
 
@@ -1069,4 +1069,31 @@ resource "render_postgres" "Database1" {
 The **name** is what is used to ID and manage the DB instance within Render. (label)
 
 The **database_name** (e.g.:  MyDatabase) and **database_user** (e.g.: DemoUser) is what Render provides. (actual DB name)
+
+## [Configure ENV Variables for Terraform](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49601655#overview)
+
+Create the following file in the main project folder:  `secrets.tfvars`
+
+Add the following:
+- Render API Key
+- render ownerID
+- GHCR username & PAT
+- DB name and user
+- secret Django key
+
+In the TF vars file, find space to define the ENV variables - he suggested above the provider section.
+
+Form:  `variable "KEY_NAME_HERE" {additional info}`
+
+The **additional info** relates to additional settings.
+
+![initializing TF vars](/IMGs/section-07/7-TF-vars.png)
+
+Replace hard coded values in the `main.tf` file by calling:  `var.VAR_NAME`
+
+Web service wil be a little different - within it's code blocks is where we're define variables.
+
+![configure web service](/IMGs/section-07/7-vars-for-web-svc.png)
+
+## [Compare Distinction Between PaaS and IaC Pre-Deployment](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49601667#overview)
 
