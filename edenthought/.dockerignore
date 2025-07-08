@@ -2,3 +2,6 @@ Dockerfile
 .dockerignore
 .env
 staticfiles/
+
+main.tf
+secrets.tfvars

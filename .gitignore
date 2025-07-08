@@ -1,5 +1,7 @@
-edenthought-FINAL
+edenthought-ORIGINAL
 .vs
+main.tf
+secrets.tfvars
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

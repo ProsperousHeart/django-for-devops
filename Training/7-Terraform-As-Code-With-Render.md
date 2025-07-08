@@ -209,3 +209,19 @@ This just covered how this applied to manually setting up within Render like bef
 
 ## [Re-Dockerize & Configure PROD Docker Image](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49546027#overview)
 
+We'll leave the sqlite for now.
+
+Need to add the secrets files to `.gitignore` and `dockerignore` files.
+
+```
+main.tf
+secrets.tfvars
+```
+
+Time to build the Docker image!
+
+```
+docker build -t ghcr.io/prosperousheart/app-image .
+docker push ghcr.io/prosperousheart/app-image
+```
+
