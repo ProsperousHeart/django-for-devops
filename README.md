@@ -11,17 +11,17 @@ You will also need to update the ENV files.
 
 # Training Table of Contents
 
-- [App Setup](/Training/1-App-Setup.md)
+1. [App Setup](/Training/1-App-Setup.md)
 
-- [Dockerization with Django](/Training/2-Dockerization-with-Django.md)
+2. [Dockerization with Django](/Training/2-Dockerization-with-Django.md)
 
-- [Preparing for Base PROD Deployment](/Training/3-Prep-For-Base-PROD-Deployment.md)
+3. [Preparing for Base PROD Deployment](/Training/3-Prep-For-Base-PROD-Deployment.md)
 
-- [GitHub Container Registry](/Training/4-GHCR.md)
+4. [GitHub Container Registry](/Training/4-GHCR.md)
 
-- [Cloud Service Models & Strategy](/Training/5-Cloud-Svc-Moel-Strategy.md)
+5. [Cloud Service Models & Strategy](/Training/5-Cloud-Svc-Moel-Strategy.md)
 
-- [PaaS with Render](/Training/6-PaaS-With-Render.md)
+6. [PaaS with Render](/Training/6-PaaS-With-Render.md)
 
 
-- [IaC with Render & Terraform](/Training/7-Terraform-As-Code-With-Render.md)
+7. [IaC with Render & Terraform](/Training/7-Terraform-As-Code-With-Render.md)
