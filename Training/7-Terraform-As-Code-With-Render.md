@@ -261,4 +261,55 @@ You can see them being built in real time on Render:
 
 ![built in RT on render](/IMGs/section-07/7-RT-built-on-render.png)
 
-## ?
+## [Configure PostgreSQL DB And Deployment Settings](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49731039#overview)
+
+This will be focused on connecting our Postgres DB & makign final deployment configurations within the `settings.py` file of main project.
+
+Go to the settings of your new Render database & update the `settings.py` file mockup, then:
+- comment out the SQLite confi
+- uncomment the POSTGRES config
+
+![tweaked postgres configs](/IMGs/section-07/7-tweaked-postgres-db-config.png)
+
+- update `.env` file
+
+Generally speaking when you are working with postgres DB and want to create a superuser & make your migrations, you usually use an external DB URL & then connect to it.
+
+We plan to make migratiosn diretly in Render shell so don't need external URL.
+
+Need to make deployment configurations, so need to:
+
+- update allowed hosts to have domain name that is given by Render's web service (local IP is being left from prior time - not in video)
+
+    ![allowed hosts update](/IMGs/section-07/7-allowed_hosts_update.png)
+
+- add back CSRF trusted origin using the allowed host from Render (to ensure we allow POST requests on our domain)
+
+    ![update CSRF](/IMGs/section-07/7-update-CSRF.png)
+
+- double check that `DEBUG` is set to `False`
+
+- ignore Terraform directory that was created (in both Docker ignore and gitignore) as well as the lock file & `.tfstate` file
+
+    We want to ignore teh TF folder from Docker because no need to include (TF is for infra building, nothing to do with actual app that Docker is used for)
+
+    ```
+    main.tf
+    secrets.tfvars
+    .terraform/
+    .terraform.lock.hcl
+    *.tfstate
+    *.tfstate.*
+    ```
+
+Clean up old images for Docker then run:  `docker system prune`
+
+Now we can revbuild docker image:  `docker build -t ghcr.io/prosperousheart/app-image .`
+
+Push to GHCR:  `docker push ghcr.io/prosperousheart/app-image`
+
+Can confirm push by going to your packages.
+
+The web service does not automatically rebuild the deployment. Using CICD with GitHub, we will be able to automatically set this up for automated updates.
+
+Now need to configure the DB creds in terms of ENV vars.

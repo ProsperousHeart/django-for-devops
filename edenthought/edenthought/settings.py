@@ -32,13 +32,13 @@ SECRET_KEY = env("SECRET_KEY")
 # DEBUG = env("DEBUG")
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
-# ALLOWED_HOSTS = ["app-image-latest-ply3.onrender.com",
-#                  "localhost",
-#                  "127.0.0.1"]
+# ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["my-django-app-ycg1.onrender.com",
+                 "localhost",
+                 "127.0.0.1"]
 
 # CSRF_TRUSTED_ORIGINS = [""]
-# CSRF_TRUSTED_ORIGINS = ['https://app-image-latest-ply3.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://my-django-app-ycg1.onrender.com']
 
 # Application definition
 
@@ -87,25 +87,25 @@ WSGI_APPLICATION = "edenthought.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
-# # Production database (PostgreSQL)
-
 # DATABASES = {
 #     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": env("DB_NAME", default="productiondatabase1_hcbd"),
-#         "USER": env("DB_USER"),
-#         "PASSWORD": env("DB_PASSWORD"),
-#         "HOST": env("DB_HOST"),
-#         "PORT": env("DB_PORT"),
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
+
+# Production database (PostgreSQL)
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env("DB_NAME", default="my_database_2mtk"),
+        "USER": env("DB_USER"),
+        "PASSWORD": env("DB_PASSWORD"),
+        "HOST": env("DB_HOST"),
+        "PORT": env("DB_PORT"),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

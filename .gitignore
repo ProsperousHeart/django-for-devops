@@ -2,6 +2,10 @@ edenthought-ORIGINAL
 .vs
 main.tf
 secrets.tfvars
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
