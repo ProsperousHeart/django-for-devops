@@ -234,3 +234,31 @@ May differ with Render, but when it comes to IaaS there is a convention to follo
 `MyDatabase` --> `my_database`
 
 `DemoUser` --> `my_database_user`
+
+## [Create Infra And Deploy App with IaC](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49601691#overview)
+
+In CMD within main project folder, send:  `terraform init`
+
+This will initialize the Terraform working directory & install all required providers. Will also prep the environment for you.
+
+**NOTE:**  Be sure you only have 1 Terraform file that is making certain commands. Otherwise it will think there are duplicates and fail to initiate.
+
+![TF init outcome](/IMGs/section-07/7-Terraform-init.png)
+
+Send `terraform plan -var-file="secrets.tfvars"` to continue setup. This will review our code in terms of our `main.tf` file as to what infra we want to setup. It will also show what changes will be made without actually applying it. (Gives you a chance to review your code!)
+
+Recommended to also refer to your ENV var file to ensure that Terraform has ability to read from these values.
+
+![TF plan](/IMGs/section-07/7-TF-plan.png)
+
+`terraform apply -var-file="secrets.tfvars"`
+
+![TF apply](/IMGs/section-07/7-complete-IaC-TF-apply.png)
+
+Once you say "yes" it will create your infra.
+
+You can see them being built in real time on Render:
+
+![built in RT on render](/IMGs/section-07/7-RT-built-on-render.png)
+
+## ?
