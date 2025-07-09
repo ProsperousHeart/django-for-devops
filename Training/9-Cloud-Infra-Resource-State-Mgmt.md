@@ -55,3 +55,54 @@ When you create your bucket, you'll see a screen similar to:
 
 ![bucket made redirect screen](/IMGs/section-09/9-bucket-made.png)
 
+# [Assign a User with Necessary Permissions](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49870667#overview)
+
+Create an IAM user with the necessary permissions so you can access your bucket with Terraform.
+
+Go back to teh dashboard by clicking the AWS icon in the top left and search for [IAM](https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-2#/home):
+
+![IAM search](/IMGs/section-09/9-IAM-search.png)
+
+You will see a security recommendation come up to enable multifactor authentication:
+
+![AWS security recommendation](/IMGs/section-09/9-AWS-security-rec.png)
+
+Once you have set up your authentication method, it will take you to the [security crednetials screen](https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-2#/security_credentials).
+
+On the IAM screen, go to [users](https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-2#/users):
+
+![IAM users](/IMGs/section-09/9-IAM-users.png)
+
+Click the button to **Create User** - you do not need to provide it access to the management console.
+
+![specify user details](/IMGs/section-09/9-IAM-create-user.png)
+
+Ensure **Permissions options** are set to **Attach policies directly**:
+
+![attach policies](/IMGs/section-09/9-attach-policies.png)
+
+Choose a policy by searching for S3 to get **AmazonS3FullAccess** so we can interact with our S3 bucket:
+
+![choose s3 policy](/IMGs/section-09/9-choose-s3-policy.png)
+
+On the next screen you are just reviewing everything. You can then click on the new user account and go to **security credentials**.
+
+![sec creds](/IMGs/section-09/9-sec-creds.png)
+
+Create an **Access Key** which will allow you to programatically connect to Amazon S3, with permissions ingrained to utilize the S3 to fullest extent.
+
+![access key](/IMGs/section-09/9-access-key.png)
+
+Choose your use case - here `Other` was chosen:
+
+![use case](/IMGs/section-09/9-use-case.png)
+
+Best practices for managing AWS keys can be found [here](https://docs.aws.amazon.com/console/general/access-keys-best-practices):
+- Never store your access key in plain text, in a code repository, or in code.
+- Disable or delete access keys when no longer needed.
+- Enable least-privilege permissions.
+- Rotate access keys regularly.
+
+You can move through to complete setup. Copy your access key somewhere safe.
+
+You usually create an IAM group and then assign permissions to the group then go from there.
