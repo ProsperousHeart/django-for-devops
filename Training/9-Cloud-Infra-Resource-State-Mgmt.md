@@ -29,3 +29,29 @@ Can be used for:
 
 ![how AWS works SIMPLE](/IMGs/section-09/9-how-aws-works-simple.png)
 
+# [Create & Setup S3 Bucket](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49870661#overview)
+
+Search for [S3](https://us-east-2.console.aws.amazon.com/s3/get-started?region=us-east-2) in the search bar of your [Management Console](https://us-east-2.console.aws.amazon.com/console/home?region=us-east-2#).
+
+![s3 search](/IMGs/section-09/9-s3-search.png)
+
+Click the "[Create bucket](https://us-east-2.console.aws.amazon.com/s3/bucket/create?region=us-east-2&bucketType=general)" button:
+
+![create bucket](/IMGs/section-09/9-create-bucket.png)
+
+Region will be auto assigned based on what your profile has in the top right.
+
+We'll leave as a **General purpose** bucket so give it a name, like:  `my-terraform-bkt-96`
+
+Leave object ownership as default with ACLs disabled.
+
+Ensure the **Block Public Access settings** is blocked for ALL.
+
+Recommended to enable **Bucket Versioning** as it is helpful if our Terraform state file changes and you need to rollback to an earlier one.
+
+Encryption is enabled by default.
+
+When you create your bucket, you'll see a screen similar to:
+
+![bucket made redirect screen](/IMGs/section-09/9-bucket-made.png)
+
