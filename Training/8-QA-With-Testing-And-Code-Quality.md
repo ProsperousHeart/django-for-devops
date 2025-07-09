@@ -92,3 +92,20 @@ Run in CMD prompt:  `pip install black`
 To have it automatically update, run:  `black .`
 
 ![black reformatting output](/IMGs/section-08/8-black-reformatting-output.png)
+
+# [Linting with Ruff](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49770429#overview)
+
+Linting is the process of analyzing code for potential errors, style issues, or bad practices.
+
+[Ruff](https://pypi.org/project/ruff/) - a python linter written in Rust. (Also a code formatter but more robust than Black in terms of linting capabilities.) Helps ID & fix issues to keep code clean.
+
+Run in command prompt:  `pip install ruff`
+
+Also creates a Ruff cache in your directory to improve speed.
+
+Run in CMD:  `ruff check`
+
+If there is an issue, it will tell you what and where. Otherwise, it will look something like this:
+
+![ruff check outcome](/IMGs/section-08/8-ruff-check.png)
+
