@@ -131,3 +131,54 @@ aws configure
 ![configure AWS keys](/IMGs/section-09/9-configure-aws-keys.png)
 
 This likely to look different if adding others, since this is the first time it was set up.
+
+# [Migrate Local Terraform State File to Amazon S3](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49870707#overview)
+
+The `.tfstate` file is like a blueprint for our current infrastructure we've set up in Render.
+
+We want to ensure when we set up our pupeline for CICD in GitHub Actions that when we set this up accordingly we don't by default recreate another set of blueprints that is going to pertain to our cloud infrastructure that's different from what we already have.
+
+We want to ensure we use the same state file to set everything up and to keep trak of all the changes to our current infrastructure.
+
+## Setup backend S3
+
+We can't use the `.tfstate` file as is since there is sensitive information in it that needs to be ignored.
+
+Open your `main.tf` file from main project folder. In the main `terraform` function, we want to set up the backend for Amazon S3 so we can synchronize the latest changes to this TF state file - even from a cloud perspective.
+
+```
+terraform {
+
+  backend "s3" {
+    bucket = "BUCKET-NAME-YOU-MADE"
+    key = "FODLER-ON-S3-YOU-CREATE/TFSTATE_NAME.tfstate"
+    region = "YOUR-REGION-HERE"
+    encrypt = true
+  }
+
+  required_providers {
+    render = {
+      source  = "render-oss/render"
+      version = "1.7.0"
+    }
+  }
+}
+```
+
+the **bucket** is where you want to push state file to. You can pull this from the [S3 page](https://us-east-2.console.aws.amazon.com/s3/home?region=us-east-2).
+
+The **key** is the location in which you want to store the Terraform file using the name of the `.tfstate` file you want to put on S3. Folder created automatically.
+
+## Migration to S3
+
+Since we already configured AWS credentials, Terraform is smart enough to grab those creds, synchronize them, & push your statefile to the designated directory you set according to the **key**.
+
+In terminal, run:  `terraform init -migrate-state`
+
+The `-migrate-state` will perform S3 synchronization.
+
+![migrate state](/IMGs/section-09/9-migrate-state.png)
+
+When you click on your bucket, within that you will find that you now have that folder:
+
+![fodler confirmed on AWS](/IMGs/section-09/9-folder-confirmed.png)
