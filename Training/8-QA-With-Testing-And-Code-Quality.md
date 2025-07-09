@@ -109,3 +109,9 @@ If there is an issue, it will tell you what and where. Otherwise, it will look s
 
 ![ruff check outcome](/IMGs/section-08/8-ruff-check.png)
 
+# [Source Code Cleanup & Package Updates](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49922143#overview)
+
+Delete the `.ruff_cache` and `staticfiles` directories from main project folder.
+
+Update `requirements.txt` file to include the new packages.
+
