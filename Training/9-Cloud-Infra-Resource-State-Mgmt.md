@@ -106,3 +106,28 @@ Best practices for managing AWS keys can be found [here](https://docs.aws.amazon
 You can move through to complete setup. Copy your access key somewhere safe.
 
 You usually create an IAM group and then assign permissions to the group then go from there.
+
+# [AWS CLI & Credentials Setup](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49870685#overview)
+
+More on this [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
+
+This is how you programatically access AWS. Scroll down the page and choose for your operating system.
+
+## Install the CLI
+
+Download and install the tool.
+
+Open a fresh CMD prompt and run the following to chek that the CLI has been installed:  `aws --version`
+
+Should see something like this:
+
+![confirm AWS CLI installed](/IMGs/section-09/9-AWS-CLI-version.png)
+
+## Configure Access Keys
+
+```
+aws configure
+```
+![configure AWS keys](/IMGs/section-09/9-configure-aws-keys.png)
+
+This likely to look different if adding others, since this is the first time it was set up.
