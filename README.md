@@ -23,7 +23,6 @@ You will also need to update the ENV files.
 
 6. [PaaS with Render](/Training/6-PaaS-With-Render.md)
 
-
 7. [IaC with Render & Terraform](/Training/7-Terraform-As-Code-With-Render.md)
 
 8. [Quality Assurance With Testing & Code Quality](/Training/8-QA-With-Testing-And-Code-Quality.md)
