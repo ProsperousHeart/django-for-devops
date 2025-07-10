@@ -29,3 +29,15 @@ CI/CD automates the process of integrating, testing, and deploying code, ensurin
 - **CI** involves tracking changesith **Git/GitHub**, building & testing in **AWS Codebuild**, and ensuring the application code is error-free & ready for deployment.
 
 - **CD** is handled by **AWS CodePipeline** and **AWS CodeDeploy**. The AWS CodePipeline orchestrates the flow, while AWS CodeDeploy deploys the application to EC2 instances, where Apache serves it to users.
+
+# [What Are GitHub Actions?](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49663103#overview)
+
+They're like robots that do tasks for you automatically when something happens in your code.
+
+They can:
+- test your code
+- deploy your website or app
+- run security checks
+- send alerts or messages
+- ... and more!
+
