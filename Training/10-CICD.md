@@ -41,3 +41,44 @@ They can:
 - send alerts or messages
 - ... and more!
 
+# [What is YAML?](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49663163#overview)
+
+**YAML** is a **human friendly data serialization language** for all programming languages.
+
+Provides a **simple way to write structured data** that's easy for both humans & computers to read
+
+## How To Define a YAML Dictionary?
+
+key / value pairs are separated by `:`
+
+```yaml
+name: John Smith
+age: 30
+job: Software Engineer
+```
+
+## How to Define a List in YAML?
+
+A **list** is a group of values that can be stored under a single key in a dictionary
+
+```yaml
+- John Smith
+- 30
+- Software Engineer
+```
+
+## Combining Lists & Dictionaries
+
+Can store a list of values under a key or have a list of dictionaries.
+
+```yaml
+name: John Smith
+age: 30
+job:
+  title: Software Engineer
+  description:  Problem solving with code
+  books:
+    - 20 ways to solve a coding bug
+    - The complete software engineers handbook
+    - clean and practical code
+```
