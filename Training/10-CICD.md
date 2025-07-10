@@ -82,3 +82,100 @@ job:
     - The complete software engineers handbook
     - clean and practical code
 ```
+
+# [Create a Workflow to Automate Terraform Plan & Apply](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49771269#overview)
+
+Need to ensure we create the correct directory structure.
+
+In the main Django project folder, create a new `.github` folder with it's own `workflows` folder, which is what GitHub actions works with.
+
+Now we need to set this all up for Terraform.
+
+```yaml
+name: Terraform workflow
+```
+
+This is a name for our workflow.
+
+```yaml
+on:
+  push:
+    branches:
+      - main
+```
+
+This is the trigger - on pushes to main.
+
+```yaml
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.11.4
+
+      - name: Set up AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan
+        env:
+          TF_VAR_RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          TF_VAR_RENDER_OWNER_ID: ${{ secrets.RENDER_OWNER_ID }}
+          TF_VAR_GHCR_USERNAME: ${{ secrets.GHCR_USERNAME }}
+          TF_VAR_GHCR_PAT: ${{ secrets.GHCR_PAT }}
+          TF_VAR_DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          TF_VAR_DATABASE_USER: ${{ secrets.DATABASE_USER }}
+          TF_VAR_SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
+      - name: Wait for Approval
+        uses: trstringer/manual-approval@v1.9.1
+        with:
+          approvers: {{ secrets.GHCR_USERNAME }}
+          minimum-approvals: 1
+          secret: ${{ secrets.GITHUB_TOKEN }} # - Behind the scenes temporary token generated
+
+      - name: Terraform Apply
+        run: terraform apply
+        env:
+          TF_VAR_RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          TF_VAR_RENDER_OWNER_ID: ${{ secrets.RENDER_OWNER_ID }}
+          TF_VAR_GHCR_USERNAME: ${{ secrets.GHCR_USERNAME }}
+          TF_VAR_GHCR_PAT: ${{ secrets.GHCR_PAT }}
+          TF_VAR_DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          TF_VAR_DATABASE_USER: ${{ secrets.DATABASE_USER }}
+          TF_VAR_SECRET_KEY: ${{ secrets.SECRET_KEY }}
+```
+
+This section is the jobs that will be run. It will run on `ubuntu-latest` image (where our code will be run) and perform some series of steps. These steps may have the following pieces:
+
+- `name`:  label of step
+- `uses`:  identifies what GitHub action (reusable script or mini program that does a specific job in your workflow - pre-built tools you build into your automation pipeline) is being used
+- `with`:  variables / inputs to use
+
+To refer to a secret, you will use:  `${{ secrets.SOME_KEY }}`
+
+Note that the `TF_VAR_` of the terraform vars allows Terraform to read from teh `main.tf` file & ensure it utilizes the correct ENV vars in the correct manner. It will take the GitHub secrets and ensure they are applied to the file. --- In other words, the whole section with `TF_VAR_` items are basically the `secrets.tfvars` file.
+
+Here are the following steps:
+
+1. CI:  checkout code to be run
+2. CI:  set up Terraform & it's given version
+3. CI:  set up AWS creds
+4. CI:  initialize Terraform
+5. CI:  run terraform plan
+6. CD:  hold off until approved
+7. CD:  apply terraform actions (where infra will be upgraded as written in `main.tf` file)
