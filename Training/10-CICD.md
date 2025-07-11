@@ -302,3 +302,7 @@ This section above is for the testing phase. It is CI for our app.
 The above is the final deploy stage. It is CD for our app.
 
 This will only run if the `test` job was successful.
+
+# Git Installation & Setup
+
+https://git-scm.com/
