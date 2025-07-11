@@ -179,3 +179,10 @@ Here are the following steps:
 5. CI:  run terraform plan
 6. CD:  hold off until approved
 7. CD:  apply terraform actions (where infra will be upgraded as written in `main.tf` file)
+
+# [Terraform Workflow (Deep Dive)](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49924603#overview)
+
+Emphsaied the AWS credentials from the `terraform.yaml` file.
+
+The `Terraform Init` step will prepare Terraform to work by setting up it's backend & downloading providers. Must be run each time - mandatory. It won't initialize from scratch - will refer to `main.tf` file when it then comunicates with teh planning stage.
+
