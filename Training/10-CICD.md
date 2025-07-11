@@ -306,3 +306,18 @@ This will only run if the `test` job was successful.
 # Git Installation & Setup
 
 https://git-scm.com/
+
+# Ignoring Files for Git Ignore
+
+Ensure the following are added from DockerIgnore:
+```
+.env
+staticfiles/
+
+main.tf
+secrets.tfvars
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+```
