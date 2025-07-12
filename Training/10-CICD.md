@@ -321,3 +321,8 @@ secrets.tfvars
 *.tfstate
 *.tfstate.*
 ```
+
+# Create Private GitHub Repo
+
+He outlined creating a private GitHub repo.
+
