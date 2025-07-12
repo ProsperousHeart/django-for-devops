@@ -333,3 +333,33 @@ Go to repo settings > actions > general > workflow permissions.
 Choose default permissions granted to GitHub token when running workflos in repo.
 
 Choose read/write permissions - requierd because we have an item that waits for approval. Also how the temporary GH token is made.
+
+# [Define GitHub Secrets for Workflows](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49924617#overview)
+
+In your repo, go to: `Settings > Secrets and variables > Actions`
+
+This is where you will define the secrets to work with GH Actions.
+
+The video only showed repo secrets, but going there now shows environment secrets as well. Learn more about them [here](https://docs.github.com/en/actions/how-tos/writing-workflows/choosing-what-your-workflow-does/store-information-in-variables).
+
+Add your secrets from your secrets file.
+
+The variable names / labels after `{{ secret.VAR_NAME }}` must match what you put in this section of the repo.
+
+We don't use the DB in the workflow, but for good measure should put the secrets in.
+
+This should also include your AWS items that were not in the terraform vars file, but the terraform & application YAML files.
+
+The keys:
+- `RENDER_API_KEY`
+- `RENDER_OWNER_ID`
+- `GHCR_USERNAME`
+- `GHCR_PAT`
+- `DB_NAME`
+- `DB_USER`
+- `SECRET_KEY`
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `DEPLOY_HOOK_KEY`
+
+The deploy hook key is the API URL you get from Render's settings under **Deploy Hook**.
