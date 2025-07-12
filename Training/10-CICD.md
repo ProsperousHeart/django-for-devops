@@ -326,3 +326,10 @@ secrets.tfvars
 
 He outlined creating a private GitHub repo.
 
+# [Assign Necessary Workflow Permissions](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49924615#overview)
+
+Go to repo settings > actions > general > workflow permissions.
+
+Choose default permissions granted to GitHub token when running workflos in repo.
+
+Choose read/write permissions - requierd because we have an item that waits for approval. Also how the temporary GH token is made.
