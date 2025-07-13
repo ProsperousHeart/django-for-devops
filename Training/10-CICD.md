@@ -391,3 +391,43 @@ Add an auto approve flag on the `terraform apply` stage by adding `-auto-approve
           TF_VAR_DATABASE_USER: ${{ secrets.DATABASE_USER }}
           TF_VAR_SECRET_KEY: ${{ secrets.SECRET_KEY }}
 ```
+
+# [Setup a Lifecycle Rule in Terraform](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49924629#overview)
+
+Focus on adjusting Terraform configuration to ensure our ENV vars have been set & not interfered with or updated in any way.
+
+In the `main.tf` file, go to the `render_web_service` you'll see that `env_vars`  were only defined with the `secret_key`.
+
+If we went ahead and run `terraform init` and `terraform plan` and `terrform apply` it's going to remove what's in Render (env vars for our DB) so coincide with what is in this file.
+
+To prevent that and ensure Terraform only deals with infrastructure side (e.g. resources, web service, postgres DB, creds) we would set up a lifecycle rule within the web service.
+
+Below where env var is defined, we want to ignore changes on them. This will take into account the ENV vars we defined with the postgres DB.
+
+```
+resource "render_web_service" "WebApp1" {
+  
+  name   = "my-django-app"
+  plan   = "starter"
+  region = "oregon"
+
+   runtime_source = {
+    image = {
+      image_url = "ghcr.io/prosperousheart/app-image"
+      tag = "latest"  
+      registry_credential_id = render_registry_credential.ghcr_credential.id
+    }
+  }
+
+  env_vars = {
+    SECRET_KEY = {value = var.SECRET_KEY}
+  }
+
+  lifecycle  {
+    ignore_changes = {
+      env_vars
+    }
+  }
+
+}
+```
