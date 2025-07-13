@@ -35,8 +35,10 @@ jobs:
           TF_VAR_RENDER_OWNER_ID: ${{ secrets.RENDER_OWNER_ID }}
           TF_VAR_GHCR_USERNAME: ${{ secrets.GHCR_USERNAME }}
           TF_VAR_GHCR_PAT: ${{ secrets.GHCR_PAT }}
-          TF_VAR_DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-          TF_VAR_DATABASE_USER: ${{ secrets.DATABASE_USER }}
+          # TF_VAR_DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          TF_VAR_DATABASE_NAME: ${{ secrets.DB_NAME }}
+          # TF_VAR_DATABASE_USER: ${{ secrets.DATABASE_USER }}
+          TF_VAR_DATABASE_USER: ${{ secrets.DB_USER }}
           TF_VAR_SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
       # - name: Wait for Approval
