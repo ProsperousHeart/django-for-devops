@@ -363,3 +363,31 @@ The keys:
 - `DEPLOY_HOOK_KEY`
 
 The deploy hook key is the API URL you get from Render's settings under **Deploy Hook**.
+
+# [Terraform Workflow Adjustment](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49924623#overview)
+
+Go to the `Wait for Approval` step in the `terraform.yaml` file. Temporarily comment it out to ensure you can easily set up your CICD pipeline automatically for infrastructure and application code.
+
+```yaml
+      - name: Wait for Approval
+        uses: trstringer/manual-approval@v1.9.1
+        with:
+          approvers: {{ secrets.GHCR_USERNAME }}
+          minimum-approvals: 1
+          secret: ${{ secrets.GITHUB_TOKEN }}
+```
+
+Add an auto approve flag on the `terraform apply` stage by adding `-auto-approve`:
+
+```yaml
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        env:
+          TF_VAR_RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          TF_VAR_RENDER_OWNER_ID: ${{ secrets.RENDER_OWNER_ID }}
+          TF_VAR_GHCR_USERNAME: ${{ secrets.GHCR_USERNAME }}
+          TF_VAR_GHCR_PAT: ${{ secrets.GHCR_PAT }}
+          TF_VAR_DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          TF_VAR_DATABASE_USER: ${{ secrets.DATABASE_USER }}
+          TF_VAR_SECRET_KEY: ${{ secrets.SECRET_KEY }}
+```
