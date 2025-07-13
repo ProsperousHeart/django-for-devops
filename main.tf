@@ -58,9 +58,9 @@ resource "render_web_service" "WebApp1" {
   }
 
   lifecycle  {
-    ignore_changes = {
+    ignore_changes = [
       env_vars
-    }
+    ]
   }
 
 }
