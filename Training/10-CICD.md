@@ -486,3 +486,6 @@ So to resolve the issue of the `.env` file, go to the main project's `settings.p
           }
        }
     ```
+
+# [Push to Private Repo](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49784297#overview)
+
