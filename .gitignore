@@ -1,3 +1,13 @@
+edenthought-ORIGINAL
+.vs
+main.tf
+secrets.tfvars
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+0-section-template.md
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

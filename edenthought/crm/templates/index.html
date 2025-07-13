@@ -1,0 +1,30 @@
+{% load static %}
+<html>
+    <head>
+        <title>Daily Notes</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    </head>
+    <body>
+        <h2>Welcome to DailyNotes!</h1>
+        <hr/>
+        <h3>Enter a new note below:</h3>
+        <form id="note-form" method="post">
+            {% csrf_token %}
+            {{myForm.as_p}}
+            <button type="submit">Add note</button>
+        </form>
+        <hr/>
+        <h4>All notes:</h4>
+
+        {% if notes %}
+            <ul>
+                {% for note in notes %}
+                    <li><strong>{{note.title}}</strong></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No notes available.</p>
+        {% endif %}
+    </body>
+    <script src="{% static 'js/app.js' %}"></script>
+</html>
