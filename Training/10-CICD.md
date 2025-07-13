@@ -431,3 +431,58 @@ resource "render_web_service" "WebApp1" {
 
 }
 ```
+
+# [Configure DBs for DEV and PROD](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49925637#overview)
+
+Focus on ensuring our DB is working fine in terms of running tests & ensure working perfectly fine in regards from managing the expectations with switching from a PROD DB to a DEV DB and vice versa.
+
+When we run our checks in the CI phase, there is going to be a chance that we run into an error in terms of our postgres DB.
+
+We won't have our `.env` file available so we won't be able to utilize our postgres DB in any way or even connect to it.
+
+What we need to do in the testing phase, we would need to ensure that we at least have a default value set for our postgres DB.
+
+To ensure that the SQLite DB just takes form in light of something that is workingfine and not breaking.
+
+So to resolve the issue of the `.env` file, go to the main project's `settings.py` file ...
+
+1. uncomment out the SQLite DB and leave postgres as is
+
+2. switch to a postgres DB if the name is avaialble ... ensure the database name is a check
+
+    - above the postgres DB add:
+
+    ```python
+    DB_NAME = env("DB_NAME", default=None)
+    ```
+
+    - add if statement to the postgres section:
+
+    ```python
+    if DB_NAME:
+      DATABASES = {
+          "default": {
+              "ENGINE": "django.db.backends.postgresql",
+              "NAME": env("DB_NAME", default="my_database_2mtk"),
+              "USER": env("DB_USER"),
+              "PASSWORD": env("DB_PASSWORD"),
+              "HOST": env("DB_HOST"),
+              "PORT": env("DB_PORT"),
+          }
+      }
+    ```
+
+    - if you haven't already, set up default values for the fields to ensure nothing breaks & everything is clean in terms of the CI phase:
+
+    ```python
+        DATABASES = {
+          "default": {
+              "ENGINE": "django.db.backends.postgresql",
+              "NAME": env("DB_NAME", default="my_database_2mtk"),
+              "USER": env("DB_USER", default=''),
+              "PASSWORD": env("DB_PASSWORD", default=''),
+              "HOST": env("DB_HOST", default=''),
+              "PORT": env("DB_PORT", default=''),
+          }
+       }
+    ```
