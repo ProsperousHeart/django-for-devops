@@ -302,3 +302,187 @@ This section above is for the testing phase. It is CI for our app.
 The above is the final deploy stage. It is CD for our app.
 
 This will only run if the `test` job was successful.
+
+# Git Installation & Setup
+
+https://git-scm.com/
+
+# Ignoring Files for Git Ignore
+
+Ensure the following are added from DockerIgnore:
+```
+.env
+staticfiles/
+
+main.tf
+secrets.tfvars
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+```
+
+# Create Private GitHub Repo
+
+He outlined creating a private GitHub repo.
+
+# [Assign Necessary Workflow Permissions](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49924615#overview)
+
+Go to repo settings > actions > general > workflow permissions.
+
+Choose default permissions granted to GitHub token when running workflos in repo.
+
+Choose read/write permissions - requierd because we have an item that waits for approval. Also how the temporary GH token is made.
+
+# [Define GitHub Secrets for Workflows](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49924617#overview)
+
+In your repo, go to: `Settings > Secrets and variables > Actions`
+
+This is where you will define the secrets to work with GH Actions.
+
+The video only showed repo secrets, but going there now shows environment secrets as well. Learn more about them [here](https://docs.github.com/en/actions/how-tos/writing-workflows/choosing-what-your-workflow-does/store-information-in-variables).
+
+Add your secrets from your secrets file.
+
+The variable names / labels after `{{ secret.VAR_NAME }}` must match what you put in this section of the repo.
+
+We don't use the DB in the workflow, but for good measure should put the secrets in.
+
+This should also include your AWS items that were not in the terraform vars file, but the terraform & application YAML files.
+
+The keys:
+- `RENDER_API_KEY`
+- `RENDER_OWNER_ID`
+- `GHCR_USERNAME`
+- `GHCR_PAT`
+- `DB_NAME`
+- `DB_USER`
+- `SECRET_KEY`
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `DEPLOY_HOOK_KEY`
+
+The deploy hook key is the API URL you get from Render's settings under **Deploy Hook**.
+
+# [Terraform Workflow Adjustment](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49924623#overview)
+
+Go to the `Wait for Approval` step in the `terraform.yaml` file. Temporarily comment it out to ensure you can easily set up your CICD pipeline automatically for infrastructure and application code.
+
+```yaml
+      - name: Wait for Approval
+        uses: trstringer/manual-approval@v1.9.1
+        with:
+          approvers: {{ secrets.GHCR_USERNAME }}
+          minimum-approvals: 1
+          secret: ${{ secrets.GITHUB_TOKEN }}
+```
+
+Add an auto approve flag on the `terraform apply` stage by adding `-auto-approve`:
+
+```yaml
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        env:
+          TF_VAR_RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          TF_VAR_RENDER_OWNER_ID: ${{ secrets.RENDER_OWNER_ID }}
+          TF_VAR_GHCR_USERNAME: ${{ secrets.GHCR_USERNAME }}
+          TF_VAR_GHCR_PAT: ${{ secrets.GHCR_PAT }}
+          TF_VAR_DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          TF_VAR_DATABASE_USER: ${{ secrets.DATABASE_USER }}
+          TF_VAR_SECRET_KEY: ${{ secrets.SECRET_KEY }}
+```
+
+# [Setup a Lifecycle Rule in Terraform](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49924629#overview)
+
+Focus on adjusting Terraform configuration to ensure our ENV vars have been set & not interfered with or updated in any way.
+
+In the `main.tf` file, go to the `render_web_service` you'll see that `env_vars`  were only defined with the `secret_key`.
+
+If we went ahead and run `terraform init` and `terraform plan` and `terrform apply` it's going to remove what's in Render (env vars for our DB) so coincide with what is in this file.
+
+To prevent that and ensure Terraform only deals with infrastructure side (e.g. resources, web service, postgres DB, creds) we would set up a lifecycle rule within the web service.
+
+Below where env var is defined, we want to ignore changes on them. This will take into account the ENV vars we defined with the postgres DB.
+
+```
+resource "render_web_service" "WebApp1" {
+  
+  name   = "my-django-app"
+  plan   = "starter"
+  region = "oregon"
+
+   runtime_source = {
+    image = {
+      image_url = "ghcr.io/prosperousheart/app-image"
+      tag = "latest"  
+      registry_credential_id = render_registry_credential.ghcr_credential.id
+    }
+  }
+
+  env_vars = {
+    SECRET_KEY = {value = var.SECRET_KEY}
+  }
+
+  lifecycle  {
+    ignore_changes = {
+      env_vars
+    }
+  }
+
+}
+```
+
+# [Configure DBs for DEV and PROD](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49925637#overview)
+
+Focus on ensuring our DB is working fine in terms of running tests & ensure working perfectly fine in regards from managing the expectations with switching from a PROD DB to a DEV DB and vice versa.
+
+When we run our checks in the CI phase, there is going to be a chance that we run into an error in terms of our postgres DB.
+
+We won't have our `.env` file available so we won't be able to utilize our postgres DB in any way or even connect to it.
+
+What we need to do in the testing phase, we would need to ensure that we at least have a default value set for our postgres DB.
+
+To ensure that the SQLite DB just takes form in light of something that is workingfine and not breaking.
+
+So to resolve the issue of the `.env` file, go to the main project's `settings.py` file ...
+
+1. uncomment out the SQLite DB and leave postgres as is
+
+2. switch to a postgres DB if the name is avaialble ... ensure the database name is a check
+
+    - above the postgres DB add:
+
+    ```python
+    DB_NAME = env("DB_NAME", default=None)
+    ```
+
+    - add if statement to the postgres section:
+
+    ```python
+    if DB_NAME:
+      DATABASES = {
+          "default": {
+              "ENGINE": "django.db.backends.postgresql",
+              "NAME": env("DB_NAME", default="my_database_2mtk"),
+              "USER": env("DB_USER"),
+              "PASSWORD": env("DB_PASSWORD"),
+              "HOST": env("DB_HOST"),
+              "PORT": env("DB_PORT"),
+          }
+      }
+    ```
+
+    - if you haven't already, set up default values for the fields to ensure nothing breaks & everything is clean in terms of the CI phase:
+
+    ```python
+        DATABASES = {
+          "default": {
+              "ENGINE": "django.db.backends.postgresql",
+              "NAME": env("DB_NAME", default="my_database_2mtk"),
+              "USER": env("DB_USER", default=''),
+              "PASSWORD": env("DB_PASSWORD", default=''),
+              "HOST": env("DB_HOST", default=''),
+              "PORT": env("DB_PORT", default=''),
+          }
+       }
+    ```

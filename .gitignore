@@ -7,6 +7,7 @@ secrets.tfvars
 *.tfstate
 *.tfstate.*
 0-section-template.md
+staticfiles/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

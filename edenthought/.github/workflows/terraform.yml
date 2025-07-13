@@ -39,15 +39,15 @@ jobs:
           TF_VAR_DATABASE_USER: ${{ secrets.DATABASE_USER }}
           TF_VAR_SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
-      - name: Wait for Approval
-        uses: trstringer/manual-approval@v1.9.1
-        with:
-          approvers: {{ secrets.GHCR_USERNAME }}
-          minimum-approvals: 1
-          secret: ${{ secrets.GITHUB_TOKEN }} # - Behind the scenes temporary token generated
+      # - name: Wait for Approval
+      #   uses: trstringer/manual-approval@v1.9.1
+      #   with:
+      #     approvers: {{ secrets.GHCR_USERNAME }}
+      #     minimum-approvals: 1
+      #     secret: ${{ secrets.GITHUB_TOKEN }} # - Behind the scenes temporary token generated
 
       - name: Terraform Apply
-        run: terraform apply
+        run: terraform apply -auto-approve
         env:
           TF_VAR_RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
           TF_VAR_RENDER_OWNER_ID: ${{ secrets.RENDER_OWNER_ID }}
