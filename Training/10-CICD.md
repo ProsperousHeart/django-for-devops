@@ -498,3 +498,13 @@ If you have a failure like this, then you likely don't have your `main.tf` file 
 ![failed TF plan step](/IMGs/section-10/10-failure-TF-plan.png)
 
 Once it's working, it should hang at this step since it is waiting on approval
+
+# [Full Workflow - Test, Deploy, Manage Code& Infra](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49830115#overview)
+
+When you look at the [Actions](https://github.com/ProsperousHeart/django-for-devops/actions) section, you can see the workflows created.
+
+You can also see in Render web events that the deploy hook to deploy the latest Docker image already pushed the new one to the service.
+
+![working deploy hook](/IMGs/section-10/10-render-deploy-hook.png)
+
+In this instance, there is 1 job with several steps for Terraform. There are 2 jobs with the Application workflow.
