@@ -84,11 +84,11 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/devopscoder951/app-image .
+          docker build -t ghcr.io/prosperousheart/app-image .
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/devopscoder951/app-image
+          docker push ghcr.io/prosperousheart/app-image
 
       - name: Re-deploy your application on Render with a deploy hook
         run: |
