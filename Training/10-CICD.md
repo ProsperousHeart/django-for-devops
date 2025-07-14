@@ -508,3 +508,9 @@ You can also see in Render web events that the deploy hook to deploy the latest 
 ![working deploy hook](/IMGs/section-10/10-render-deploy-hook.png)
 
 In this instance, there is 1 job with several steps for Terraform. There are 2 jobs with the Application workflow.
+
+# [Managing Automated Code Updates](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49926273#overview)
+
+Makes minor changes such as the color of the header in the static file to green and in the CRM app templates directory and add a horizontal line.
+
+Before making the change, view the TErraform workflow in GitHub as it will run immediately.
