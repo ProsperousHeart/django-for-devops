@@ -489,3 +489,12 @@ So to resolve the issue of the `.env` file, go to the main project's `settings.p
 
 # [Push to Private Repo](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49784297#overview)
 
+When you do and the workflows are in the appropriate place, you'll notice something like this that indicates your workflows are working:
+
+![flow processing](/IMGs/section-10/10-workflow-processing.png)
+
+If you have a failure like this, then you likely don't have your `main.tf` file in the right place or have hidden it through your `.gitignore` file:
+
+![failed TF plan step](/IMGs/section-10/10-failure-TF-plan.png)
+
+Once it's working, it should hang at this step since it is waiting on approval
