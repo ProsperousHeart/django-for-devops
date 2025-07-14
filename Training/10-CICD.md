@@ -514,3 +514,19 @@ In this instance, there is 1 job with several steps for Terraform. There are 2 j
 Makes minor changes such as the color of the header in the static file to green and in the CRM app templates directory and add a horizontal line.
 
 Before making the change, view the TErraform workflow in GitHub as it will run immediately.
+
+# [Utilize Manual Approval for Steps](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49926281#overview)
+
+If you want a boundary to have someone approval before being pushed out, then you would have an auto-approve boundary with a manual approval step.
+
+In the Terraform workflow, uncomment the `Wait for Approval` section.
+
+There are times when this is buggy and won't work.
+
+When you make changes, you'll see something like this:
+
+![approval issue waiting](/IMGs/section-10/10-waiting-approval-via-pr.png)
+
+If it fails mid run, you can re-run the jobs.
+
+Approval in this instance is [here](https://github.com/ProsperousHeart/django-for-devops/issues/13).
