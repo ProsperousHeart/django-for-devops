@@ -30,3 +30,36 @@ You will also need to update the ENV files.
 9. [Cloud Infrastructure Resource State Management](/Training/9-Cloud-Infra-Resource-State-Mgmt.md)
 
 10. [Continuous Integration and Delivery - CICD](/Training/10-CICD.md)
+
+11. [Cleanup & Metrics](/Training/11-Performance-Monitoring-And-Cleanup.md)
+
+# Connect With Trainer (NOT ProsperousHeart)
+
+#1 - Cloud With Django
+
+If you are interested in taking more online courses, feel free to check out my other courses on my website Cloud With Django:
+
+https://www.cloudwithdjango.com/courses/
+
+
+Cloud With Django
+
+#2 - Cloud With Django - YouTube
+
+For additional content on Cloud computing and Django, feel free to connect with me on my main YouTube channel:
+
+https://www.youtube.com/@CloudWithDjango
+
+
+#3 - Cloud With Django - Twitter
+
+Cloud With Django is now on Twitter! So, If you would like to stay up to date with the latest updates and announcements in terms of additional content, Udemy courses and all of that jazz, then you are more than welcome to connect with me on Twitter:
+
+https://www.twitter.com/CloudWDjango
+
+
+#4 - Cloud Ops [NEW] - 2nd YouTube
+
+For additional content on Cloud computing and DevOps, feel free to connect with me on my new and second YouTube channel:
+
+https://www.youtube.com/@CloudOpsTraining
