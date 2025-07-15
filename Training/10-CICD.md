@@ -530,3 +530,37 @@ When you make changes, you'll see something like this:
 If it fails mid run, you can re-run the jobs.
 
 Approval in this instance is [here](https://github.com/ProsperousHeart/django-for-devops/issues/13).
+
+# [Understanding How To Delete Or Recreate/Update Cloud Resources](http://udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49870567#overview)
+
+In the `main.tf` file of your project folder ... updates were made!
+
+Recording went over this but he did not suggest to do it.
+
+Deleted:
+
+```terraform
+resource "render_postgres" "Database1" {
+
+    name = "ProductionDatabase1"
+    plan = "free"       
+    region = "oregon"      
+    version = "16"
+
+    database_name = var.DB_NAME
+    database_user = var.DB_USER
+
+    high_availability_enabled = false  # Disabled high availability for simplicity
+
+  }
+```
+
+He then pushed the changes. It will remove through the Terraform plan and will revert the DB back to SQLite. The approval step ensured that this didn't take place unless you were ok with it. (No accident!)
+
+It will be removed form Render, but you'll still see the ENV variables in Render for your web service. But they're noq useless.
+
+You will need to delete this to complete the transition to SQLite DB (except the **secret key**).
+
+To re-add the DB ... add it back into `main.tf` and recreate the DB following the same process above to push changes and have it automatically set things up.
+
+You will need to add the ENv variables back into Render. However since it is a new DB you will need to add the new information created by Render.
