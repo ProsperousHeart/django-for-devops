@@ -564,3 +564,39 @@ You will need to delete this to complete the transition to SQLite DB (except the
 To re-add the DB ... add it back into `main.tf` and recreate the DB following the same process above to push changes and have it automatically set things up.
 
 You will need to add the ENv variables back into Render. However since it is a new DB you will need to add the new information created by Render.
+
+# [State Management Check](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49948381#overview)
+
+Make a minor change in your application - like the HTML in the CRM template.
+
+Want to see if plan with remember the state ... save, commit, and push.
+
+Go to the Actions section and review the plan section.
+
+Then approve it so the change goes through.
+
+Test the application.
+
+# [Evaluating the latest GitHub Action releases - [Additional]](https://www.udemy.com/course/python-django-for-devops-terraform-render-docker-cicd/learn/lecture/49926395#overview)
+
+Hi all,
+
+As stated in the lectures, here is a reference link to each of the separate GitHub Action releases that we use in the course, so that you can stay up to date on the versions - if you want to upgrade.
+
+Checkout code:
+https://github.com/actions/checkout/releases
+
+Set up Terraform:
+https://github.com/hashicorp/setup-terraform/releases
+
+Set up AWS credentials:
+https://github.com/aws-actions/configure-aws-credentials/releases
+
+Manual approval trigger:
+https://github.com/trstringer/manual-approval/releases
+
+Set up Python:
+https://github.com/actions/setup-python/releases
+
+Log in to GitHub Container Registry:
+https://github.com/docker/login-action/releases
